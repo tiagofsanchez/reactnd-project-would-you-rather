@@ -35,6 +35,11 @@ class Login extends React.Component {
       btnDisable = false;
     }
 
+    let isLoading = true;
+    if (userOptions.length > 0) {
+      isLoading = false;
+    }
+
     return (
       <Container textAlign="center">
         <h1>Welcome to WOULD YOU RATHER app</h1>
@@ -45,6 +50,7 @@ class Login extends React.Component {
             fluid
             selection
             options={userOptions}
+            loading={isLoading}
             onChange={this.handleUserChange}
           />
           <Button fluid content="ENTER" disabled={btnDisable} type="submit" />

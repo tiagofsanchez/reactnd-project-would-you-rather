@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
-import LoadingBar from "react-redux-loading";
 
 import Login from "./components/Login";
+import NavBar from "./components/NavBar";
 
 class App extends Component {
   componentDidMount() {
@@ -14,7 +14,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <LoadingBar style={{ backgroundColor: "gray", height: "50px" }} />
+        <NavBar />
+        <div style={{ height: "100px" }}></div>
         <Login />
       </div>
     );
