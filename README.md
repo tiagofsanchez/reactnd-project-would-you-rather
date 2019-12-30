@@ -1,68 +1,91 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Would you rather UDACITY project
 
-## Available Scripts
+Here you will find my project and the steps that I have make to build it. I will follow the guidelines provided by udacity team and they are as follows: 
 
-In the project directory, you can run:
+1. Draw All of the Views of the App
+2. Break Each View Into a Hierarchy of Components
+3. Determine What Events Happen in the App 
+4. Determine What Data Lives in the Store.
 
-### `yarn start`
+Let's get started.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+##  1.Draw all the views of the app
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+With the help to the following app youtube video we are able to build the different page views.
 
-### `yarn test`
+[Would you rather app](https://youtu.be/xfmSkLAL__Q)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+So you will have a couple of different pages here: 
+* Login page
+* Home page
+* Poll page
+* Answered poll page
+* Leaderboard page
+* New question page
 
-### `yarn build`
+Note that for every different page, I will need to create a different url. More on that latter. 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I am not sure if I am missing something out, but for now, I reckon this is a very good start and we can always go back to the main project rubric to check if we are missing something out.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Let's dive in the components for each page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 2.Components breakdown 
 
-### `yarn eject`
+### Log in page
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+From a component stand point, this one will be very simple, it will have: 
+* Login component (view)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Home page
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* App
+* NavBar 
+* QuestionsPane 
+* UserCard (view)
+* UserAvatar (view)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Poll page
 
-## Learn More
+* App
+* NavBar
+* UserCard (view)
+* Question
+* UserAvatar (view)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Answered poll page
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* App
+* NavBar
+* UserCard (view)
+* QuestionResults (view)
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### New question page
 
-### Analyzing the Bundle Size
+* App
+* NavBar
+* NewQuestionForm
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Leaderboard page
 
-### Making a Progressive Web App
+* App
+* NavBar
+* LeaderboardCard (view)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+I think we are all good for now... let's start to figure out what are the main actions on our app. 
 
-### Advanced Configuration
+## 3.Determine What Events Happen in the App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+When you open the app you, before you login, you should get users and the questions: 
+- get **users**,
+- get **questions**
 
-### Deployment
+During the login phase you need to set the authUser
+- set **authUser** 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+When you are in the unanswered questions pane, you need to get the unanswered questions, whereas in the answered questions pane the ones that the user answered already. 
+- get **questions** (the correct ones :)
+- get **authUser** 
 
-### `yarn build` fails to minify
+### 4.Determine What Data Lives in the Store
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
