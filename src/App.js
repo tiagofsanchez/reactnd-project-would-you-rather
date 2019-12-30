@@ -15,7 +15,6 @@ class App extends Component {
     return (
       <div>
         <NavBar />
-        <div style={{ height: "100px" }}></div>
         <Login />
       </div>
     );

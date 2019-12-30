@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Dropdown, Button, Container, Form } from "semantic-ui-react";
+import { Dropdown, Button, Form } from "semantic-ui-react";
+/** @jsx jsx */
+import { jsx } from "@emotion/core";
 
 import { userOptions } from "../utils/helper";
 import { receivedAuth } from "../actions/authUser";
@@ -41,7 +43,10 @@ class Login extends React.Component {
     }
 
     return (
-      <Container textAlign="center">
+      <div
+        textAlign="center"
+        css={{ width: `80%`, margin: `auto`, textAlign: `center` }}
+      >
         <h1>Welcome to WOULD YOU RATHER app</h1>
         <Form onSubmit={this.onSubmitHandler}>
           <Dropdown
@@ -55,7 +60,7 @@ class Login extends React.Component {
           />
           <Button fluid content="ENTER" disabled={btnDisable} type="submit" />
         </Form>
-      </Container>
+      </div>
     );
   }
 }
