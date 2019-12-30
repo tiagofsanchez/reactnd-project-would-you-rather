@@ -11,7 +11,7 @@ Let's get started.
 
 ##  1.Draw all the views of the app
 
-With the help to the following app youtube video we are able to build the different page views.
+With the help to the following app YouTube video we are able to build the different page views.
 
 [Would you rather app](https://youtu.be/xfmSkLAL__Q)
 
