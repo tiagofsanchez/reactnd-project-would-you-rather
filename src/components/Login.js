@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Dropdown, Button, Form } from "semantic-ui-react";
+import { Redirect } from "react-router-dom";
+
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
@@ -41,13 +43,13 @@ class Login extends React.Component {
 
   onSubmitHandler = e => {
     const { dispatch } = this.props;
-    const { userId } = this.state;
+    const { userId, islogedIn } = this.state;
     dispatch(receivedAuth(userId));
-    this.setState({ userId: "" });
+    this.setState({ userId: "", isLogedIn: !islogedIn });
   };
 
   render() {
-    const { userId } = this.state;
+    const { userId, isLogedIn } = this.state;
     const { userOptions } = this.props;
 
     let btnDisable = true;

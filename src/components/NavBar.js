@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
@@ -31,13 +32,21 @@ const Li = styled.li`
   margin-right: 10px;
 `;
 
+const Span = styled.span`
+  background-color: #cccccc;
+  padding: 2px;
+  border-radius: 2px;
+`;
+
 class NavBar extends Component {
   onLogoutHandler = () => {
-    this.props.dispatch(logoutAuth(null));
+    const { dispatch } = this.props;
+    dispatch(logoutAuth(null));
   };
 
   render() {
     const { authUser } = this.props;
+
     return (
       <Nav>
         <div>
@@ -50,16 +59,7 @@ class NavBar extends Component {
         <div>
           <Ul>
             <Li>
-              Hello,{" "}
-              <span
-                css={{
-                  backgroundColor: `#cccccc`,
-                  padding: `2px`,
-                  borderRadius: `2px`
-                }}
-              >
-                {authUser}
-              </span>{" "}
+              Hello, <Span>{authUser}</Span>
             </Li>
             <Li>
               <Button

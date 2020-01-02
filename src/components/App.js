@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { handleInitialData } from "../actions/shared";
+import { Route, Switch } from "react-router-dom";
 
+import { handleInitialData } from "../actions/shared";
 import Login from "./Login";
 import NavBar from "./NavBar";
 
@@ -12,18 +13,25 @@ class App extends Component {
   }
 
   render() {
-    const { logedIn } = this.props;
+    const { isLogedIn } = this.props;
+    console.log(isLogedIn);
 
-    let app = <Login />;
-    if (logedIn) {
-      app = <NavBar />;
-    }
-    return <div>{app}</div>;
+    return (
+      <div>
+        {!isLogedIn ? (
+          <Login />
+        ) : (
+          <Switch>
+            <Route path="/" component={NavBar} />
+          </Switch>
+        )}
+      </div>
+    );
   }
 }
 function mapStateToProps({ authUser }) {
   return {
-    logedIn: authUser !== null
+    isLogedIn: authUser !== null
   };
 }
 
