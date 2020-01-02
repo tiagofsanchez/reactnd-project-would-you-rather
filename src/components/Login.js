@@ -11,20 +11,20 @@ import { receivedAuth } from "../actions/authUser";
 /*STYLED COMPONENTS */
 
 const LoginContainer = styled.div`
-text-align: center;
-position: absolute;
-top: 50%;
-left: 50%;
-width: 300px;
-height: 400px;
-margin-top: -200px;
-margin-left: -150px;
-background-color: #ffebee; 
-padding: 10px;
-border-radius: 5px;
-display: flex;
-flex-direction: column;
-justify-content: space-between
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 400px;
+  margin-top: -200px;
+  margin-left: -150px;
+  background-color: #e61a8d;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 class Login extends React.Component {
@@ -50,8 +50,6 @@ class Login extends React.Component {
     const { userId } = this.state;
     const { userOptions } = this.props;
 
-    console.log(this.state);
-
     let btnDisable = true;
     if (userId !== "") {
       btnDisable = false;
@@ -64,7 +62,14 @@ class Login extends React.Component {
 
     return (
       <LoginContainer>
-        <h1>Welcome to WOULD YOU RATHER app</h1>
+        <h1 css={{ color: `white` }}>Welcome to WOULD YOU RATHER app</h1>
+        <div css={{ textAlign: `center`, display: `block` }}>
+          <img
+            src="https://image.flaticon.com/icons/svg/2353/2353678.svg"
+            alt="would you rather logo"
+            width="150px"
+          />
+        </div>
         <Form onSubmit={this.onSubmitHandler}>
           <Dropdown
             placeholder="Select your user"
@@ -74,7 +79,7 @@ class Login extends React.Component {
             options={userOptions}
             loading={isLoading}
             onChange={this.handleUserChange}
-            css={{marginBottom:`20px`}}
+            css={{ marginBottom: `20px` }}
           />
           <Button fluid content="ENTER" disabled={btnDisable} type="submit" />
         </Form>

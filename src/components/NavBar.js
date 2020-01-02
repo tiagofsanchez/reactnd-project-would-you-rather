@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Button } from "semantic-ui-react";
+import { connect } from "react-redux";
 
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
+
+import { logoutAuth } from "../actions/authUser";
 
 /*STYLE components */
 
@@ -29,7 +32,12 @@ const Li = styled.li`
 `;
 
 class NavBar extends Component {
+  onLogoutHandler = () => {
+    this.props.dispatch(logoutAuth(null));
+  };
+
   render() {
+    console.log(this.props);
     return (
       <Nav>
         <div>
@@ -43,7 +51,12 @@ class NavBar extends Component {
           <Ul>
             <Li>Hello, </Li>
             <Li>
-              <Button size="mini" content="Logout" color="pink" />
+              <Button
+                size="mini"
+                content="Logout"
+                color="pink"
+                onClick={this.onLogoutHandler}
+              />
             </Li>
           </Ul>
         </div>
@@ -52,4 +65,10 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+function mapStateToProps({ authUser }) {
+  return {
+    authUser
+  };
+}
+
+export default connect(mapStateToProps)(NavBar);
