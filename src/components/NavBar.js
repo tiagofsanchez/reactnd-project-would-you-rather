@@ -37,7 +37,7 @@ class NavBar extends Component {
   };
 
   render() {
-    console.log(this.props);
+    const { authUser } = this.props;
     return (
       <Nav>
         <div>
@@ -49,7 +49,18 @@ class NavBar extends Component {
         </div>
         <div>
           <Ul>
-            <Li>Hello, </Li>
+            <Li>
+              Hello,{" "}
+              <span
+                css={{
+                  backgroundColor: `#cccccc`,
+                  padding: `2px`,
+                  borderRadius: `2px`
+                }}
+              >
+                {authUser}
+              </span>{" "}
+            </Li>
             <Li>
               <Button
                 size="mini"
