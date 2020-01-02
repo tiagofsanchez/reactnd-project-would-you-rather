@@ -3,38 +3,51 @@ import { Button } from "semantic-ui-react";
 
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import styled from "@emotion/styled";
+
+/*STYLE components */
+
+const Nav = styled.nav`
+  width: 80%;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Ul = styled.ul`
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+`;
+
+const Li = styled.li`
+  margin-right: 10px;
+`;
 
 class NavBar extends Component {
   render() {
     return (
-      <nav
-        css={{
-          width: `80%`,
-          textAlign: `center`,
-          margin: `auto`,
-          display: `flex`,
-          alignItems: `center`,
-          justifyContent: `space-between`
-        }}
-      >
+      <Nav>
         <div>
-          <ul css={{ listStyle: `none`, display: `flex` }}>
-            <li>Home</li>
-            <li>New Question</li>
-            <li>Leaderboard</li>
-          </ul>
+          <Ul>
+            <Li>Home</Li>
+            <Li>New question</Li>
+            <Li>Leaderboard</Li>
+          </Ul>
         </div>
         <div>
-          <ul
-            css={{ listStyle: `none`, display: `flex`, alignItems: `center` }}
-          >
-            <li>Hello, </li>
-            <li>
+          <Ul>
+            <Li>Hello, </Li>
+            <Li>
               <Button size="mini" content="Logout" color="pink" />
-            </li>
-          </ul>
+            </Li>
+          </Ul>
         </div>
-      </nav>
+      </Nav>
     );
   }
 }

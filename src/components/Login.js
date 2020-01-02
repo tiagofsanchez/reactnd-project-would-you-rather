@@ -3,9 +3,29 @@ import { connect } from "react-redux";
 import { Dropdown, Button, Form } from "semantic-ui-react";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import styled from "@emotion/styled";
 
 import { userOptions } from "../utils/helper";
 import { receivedAuth } from "../actions/authUser";
+
+/*STYLED COMPONENTS */
+
+const LoginContainer = styled.div`
+text-align: center;
+position: absolute;
+top: 50%;
+left: 50%;
+width: 300px;
+height: 400px;
+margin-top: -200px;
+margin-left: -150px;
+background-color: #ffebee; 
+padding: 10px;
+border-radius: 5px;
+display: flex;
+flex-direction: column;
+justify-content: space-between
+`;
 
 class Login extends React.Component {
   state = {
@@ -43,10 +63,7 @@ class Login extends React.Component {
     }
 
     return (
-      <div
-        textAlign="center"
-        css={{ width: `80%`, margin: `auto`, textAlign: `center` }}
-      >
+      <LoginContainer>
         <h1>Welcome to WOULD YOU RATHER app</h1>
         <Form onSubmit={this.onSubmitHandler}>
           <Dropdown
@@ -57,10 +74,11 @@ class Login extends React.Component {
             options={userOptions}
             loading={isLoading}
             onChange={this.handleUserChange}
+            css={{marginBottom:`20px`}}
           />
           <Button fluid content="ENTER" disabled={btnDisable} type="submit" />
         </Form>
-      </div>
+      </LoginContainer>
     );
   }
 }
