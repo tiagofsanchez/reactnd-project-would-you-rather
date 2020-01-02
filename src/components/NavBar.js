@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
@@ -22,7 +22,7 @@ const Nav = styled.nav`
 `;
 
 const Ul = styled.ul`
-  list-style: none;
+  text-decoration: none;
   display: flex;
   align-items: center;
   padding: 0;
@@ -30,6 +30,8 @@ const Ul = styled.ul`
 
 const Li = styled.li`
   margin-right: 10px;
+  list-style: none;
+  text-decoration: none;
 `;
 
 const Span = styled.span`
@@ -38,10 +40,17 @@ const Span = styled.span`
   border-radius: 2px;
 `;
 
+const activeLink = {
+  fontWeight: "bold",
+  paddingBottom: "5px",
+  borderBottom: "3px solid #e03997"
+};
+
 class NavBar extends Component {
   onLogoutHandler = () => {
     const { dispatch } = this.props;
     dispatch(logoutAuth(null));
+    window.location.href = "/";
   };
 
   render() {
@@ -51,9 +60,21 @@ class NavBar extends Component {
       <Nav>
         <div>
           <Ul>
-            <Li>Home</Li>
-            <Li>New question</Li>
-            <Li>Leaderboard</Li>
+            <Li>
+              <NavLink exact to="/" activeStyle={activeLink}>
+                Home
+              </NavLink>
+            </Li>
+            <Li>
+              <NavLink exact to="/newquestion" activeStyle={activeLink}>
+                New question
+              </NavLink>
+            </Li>
+            <Li>
+              <NavLink exact to="/leaderboard" activeStyle={activeLink}>
+                Leaderboard
+              </NavLink>
+            </Li>
           </Ul>
         </div>
         <div>

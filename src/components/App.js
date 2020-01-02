@@ -4,7 +4,9 @@ import { Route, Switch } from "react-router-dom";
 
 import { handleInitialData } from "../actions/shared";
 import Login from "./Login";
-import NavBar from "./NavBar";
+import Leaderboard from "./Leaderboard";
+import Home from "./Home";
+import NewQuestion from "./NewQuestion";
 
 class App extends Component {
   componentDidMount() {
@@ -22,7 +24,9 @@ class App extends Component {
           <Login />
         ) : (
           <Switch>
-            <Route path="/" component={NavBar} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/newquestion" component={NewQuestion} />
+            <Route exact path="/leaderboard" component={Leaderboard} />
           </Switch>
         )}
       </div>
