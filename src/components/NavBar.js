@@ -19,6 +19,7 @@ const Nav = styled.nav`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 70px
 `;
 
 const Ul = styled.ul`

@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { handleInitialData } from "../actions/shared";
 import Login from "./Login";
-import Leaderboard from "./Leaderboard";
+import LeaderboardPage from "./LeaderboardPage";
 import Home from "./Home";
 import NewQuestion from "./NewQuestion";
 
@@ -26,7 +26,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/newquestion" component={NewQuestion} />
-            <Route exact path="/leaderboard" component={Leaderboard} />
+            <Route exact path="/leaderboard" component={LeaderboardPage} />
           </Switch>
         )}
       </div>
