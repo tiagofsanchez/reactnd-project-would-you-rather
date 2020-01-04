@@ -4,7 +4,7 @@ export function userOptions(users) {
     return {
       id: users[user].id,
       text: users[user].name,
-      value: users[user].name,
+      value: users[user].id,
       image: { avatar: true, src: users[user].avatarURL }
     };
   });

@@ -19,7 +19,7 @@ const Nav = styled.nav`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 70px
+  margin-bottom: 70px;
 `;
 
 const Ul = styled.ul`
@@ -33,12 +33,19 @@ const Li = styled.li`
   margin-right: 10px;
   list-style: none;
   text-decoration: none;
+  display: flex;
+  align-items: center;
 `;
 
 const Span = styled.span`
   background-color: #cccccc;
   padding: 2px;
   border-radius: 2px;
+`;
+
+const Avatar = styled.img`
+  height: 20px;
+  margin: 5px;
 `;
 
 const activeLink = {
@@ -55,7 +62,7 @@ class NavBar extends Component {
   };
 
   render() {
-    const { authUser } = this.props;
+    const { authUser, avatarURL } = this.props;
 
     return (
       <Nav>
@@ -81,7 +88,8 @@ class NavBar extends Component {
         <div>
           <Ul>
             <Li>
-              Hello, <Span>{authUser}</Span>
+              Hello, <Avatar alt={authUser} src={avatarURL} />{" "}
+              <Span>{authUser}</Span>
             </Li>
             <Li>
               <Button
@@ -98,9 +106,10 @@ class NavBar extends Component {
   }
 }
 
-function mapStateToProps({ authUser }) {
+function mapStateToProps({ authUser, users }) {
   return {
-    authUser
+    authUser,
+    avatarURL: users[authUser].avatarURL
   };
 }
 
