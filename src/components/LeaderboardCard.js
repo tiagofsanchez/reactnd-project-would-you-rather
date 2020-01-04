@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
@@ -10,48 +9,53 @@ const CardContainer = styled.div`
   width: 80%;
   margin: auto;
   border: solid #e03997 1px;
-  padding: 10px;
+  padding: 10px 20px 10px 20px;
   border-radius: 4px;
   text-align: center;
   margin-bottom: 10px;
-  display: flex; 
+  display: flex;
   align-items: center;
-
+  justify-content: space-between;
 `;
 
 const Flex = styled.div`
   display: flex;
+  flex-direction: column-reverse;
 `;
 
 const Avatar = styled.img`
-  height: 115px;
+  height: 80px;
   padding: 8px;
 `;
 
+const Score = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #e03997;
+  color: white;
+  font-size: xx-large;
+`;
+
 const LeaderboardCard = props => {
-  const { user } = props;
+  const { name, avatarURL, questionsAnswered, questionsAsked, score } = props;
   console.log(props);
   return (
     <CardContainer>
       <Flex>
-        <h2>{user.name}</h2>
-        <Avatar src={user.avatarURL} alt={user.name} />
+        <h4>{name}</h4>
+        <Avatar src={avatarURL} alt={name} />
       </Flex>
-      <div>
-        <p>Something here</p>
-      </div>
-      <div>
-          <p>Something here</p>
-      </div>
+      <Flex css={{ fontSize: `large` }}>
+        <p>{`Questions answered: ${questionsAnswered}`}</p>
+        <hr />
+        <p>{`Questions asked: ${questionsAsked}`}</p>
+      </Flex>
+      <Score>
+        <p>{score}</p>
+      </Score>
     </CardContainer>
   );
 };
 
-function mapStateToProps({ users }, { userId }) {
-  const user = users[userId];
-  return {
-    user
-  };
-}
-
-export default connect(mapStateToProps)(LeaderboardCard);
+export default LeaderboardCard;
