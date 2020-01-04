@@ -37,11 +37,7 @@ const Li = styled.li`
   align-items: center;
 `;
 
-const Span = styled.span`
-  background-color: #cccccc;
-  padding: 2px;
-  border-radius: 2px;
-`;
+const Span = styled.span``;
 
 const Avatar = styled.img`
   height: 20px;

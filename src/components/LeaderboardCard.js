@@ -47,9 +47,9 @@ const LeaderboardCard = props => {
         <Avatar src={avatarURL} alt={name} />
       </Flex>
       <Flex css={{ fontSize: `large` }}>
-        <p>{`Questions answered: ${questionsAnswered}`}</p>
-        <hr />
         <p>{`Questions asked: ${questionsAsked}`}</p>
+        <hr />
+        <p>{`Questions answered: ${questionsAnswered}`}</p>
       </Flex>
       <Score>
         <p>{score}</p>
