@@ -30,3 +30,17 @@ export function leaderboardData(users) {
     .sort((a, b) => a.score - b.score)
     .reverse();
 }
+
+//This function helps us to know the split between answered and unanswered questions
+export function userQuestionData(users, authUser, questions) {
+  const answeredId = Object.keys(users[authUser].answers);
+  const unansweredId = Object.keys(questions).filter(
+    question => !answeredId.includes(question)
+  );
+
+  return {
+    userId: users[authUser].id,
+    answeredId,
+    unansweredId
+  };
+}

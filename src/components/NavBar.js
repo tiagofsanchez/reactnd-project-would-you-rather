@@ -62,7 +62,7 @@ class NavBar extends Component {
   };
 
   render() {
-    const { authUser, avatarURL } = this.props;
+    const { name, avatarURL } = this.props;
 
     return (
       <Nav>
@@ -88,8 +88,7 @@ class NavBar extends Component {
         <div>
           <Ul>
             <Li>
-              Hello, <Avatar alt={authUser} src={avatarURL} />{" "}
-              <Span>{authUser}</Span>
+              Hello, <Avatar alt={name} src={avatarURL} /> <Span>{name}</Span>
             </Li>
             <Li>
               <Button
@@ -109,7 +108,8 @@ class NavBar extends Component {
 function mapStateToProps({ authUser, users }) {
   return {
     authUser,
-    avatarURL: users[authUser].avatarURL
+    avatarURL: users[authUser].avatarURL,
+    name: users[authUser].name
   };
 }
 
