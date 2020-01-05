@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { Form, Input, Button } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
-import { connect } from "react-redux";
 
 import { handleSaveQuestion } from "../actions/questions";
 import NavBar from "./NavBar";
@@ -44,7 +45,8 @@ const Container = styled.div`
 class NewQuestion extends Component {
   state = {
     optionOne: "",
-    optionTwo: ""
+    optionTwo: "",
+    onSubmit: false
   };
 
   handleSubmit = e => {
@@ -54,6 +56,11 @@ class NewQuestion extends Component {
     // dispatch(handleSaveQuestion(optionOne, optionTwo, authUser));
     // Why the above doesn't work;
     handleSaveQuestion(optionOne, optionTwo, authUser);
+    this.setState({
+      optionOne: "",
+      optionTwo: "",
+      onSubmit: true
+    });
   };
 
   handleChange = e => {
@@ -64,11 +71,14 @@ class NewQuestion extends Component {
   };
 
   render() {
-    const { optionOne, optionTwo } = this.state;
-    console.log(this.props);
+    const { optionOne, optionTwo, onSubmit } = this.state;
+    if (onSubmit === true) {
+      return <Redirect to="/" />;
+    }
     return (
       <Fragment>
         <NavBar />
+
         <NewQuestionContainer>
           <h2 css={{ marginBottom: `40px`, color: `#e03997` }}>
             Would you rather...

@@ -15,5 +15,3 @@ export function addQuestionToUser({ id, author }) {
     author
   };
 }
-
-//TODO: add the question to the USER depending on who is logged in
