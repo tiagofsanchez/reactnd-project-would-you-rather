@@ -7,6 +7,7 @@ import styled from "@emotion/styled";
 
 import { userQuestionData } from "../utils/helper";
 import NavBar from "./NavBar";
+import QuestionCard from "./QuestionCard";
 
 /* STYLED COMPONENTS */
 const HomeContainer = styled.div`
@@ -35,15 +36,19 @@ class Home extends Component {
     const { toBeAnswered } = this.state;
     const { answeredId, unansweredId } = this.props.questionsSplit;
 
-    const questionsToAnswer = unansweredId.map(id => <p>{id}</p>);
+    const questionsToAnswer = unansweredId.map(id => (
+      <QuestionCard key={id} id={id} />
+    ));
 
-    const answeredQuestions = answeredId.map(id => <p>{id}</p>);
+    const answeredQuestions = answeredId.map(id => (
+      <QuestionCard id={id} key={id} />
+    ));
 
     return (
       <Fragment>
         <NavBar />
         <HomeContainer>
-          <ButtonGroup fluid basic size="big">
+          <ButtonGroup fluid basic size="big" style={{ marginBottom: `20px` }}>
             <Button active={toBeAnswered} onClick={this.tbAnsweredHandler}>
               To be answered
             </Button>
@@ -58,6 +63,8 @@ class Home extends Component {
     );
   }
 }
+
+//TODO: need to sort the questions by timestamp
 
 function mapStateToProps({ authUser, questions, users }) {
   const questionsSplit = userQuestionData(users, authUser, questions);
