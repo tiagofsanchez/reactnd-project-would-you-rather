@@ -37,11 +37,11 @@ class Home extends Component {
     const { answeredId, unansweredId } = this.props.questionsSplit;
 
     const questionsToAnswer = unansweredId.map(id => (
-      <QuestionCard key={id} id={id} />
+      <QuestionCard key={id} id={id} toBeAnswered={toBeAnswered} />
     ));
 
     const answeredQuestions = answeredId.map(id => (
-      <QuestionCard id={id} key={id} />
+      <QuestionCard id={id} key={id} toBeAnswered={toBeAnswered} />
     ));
 
     return (
