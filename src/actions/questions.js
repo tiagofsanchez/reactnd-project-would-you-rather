@@ -1,7 +1,8 @@
-import { saveQuestion } from "../utils/api";
+import { saveQuestion, saveQuestionAnswer } from "../utils/api";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const SAVE_QUESTION = "SAVE_QUESTION";
+export const SAVE_ANSWER_TO_QUESTION = "SAVE_ANSWER_TO_QUESTION";
 
 export function receiveQuestions(questions) {
   return {
@@ -17,6 +18,7 @@ function savePoll(question) {
   };
 }
 
+//TODO: need to save this in the user as well
 export function handleSaveQuestion(optionOneText, optionTwoText, author) {
   return dispatch => {
     return saveQuestion({
@@ -24,5 +26,25 @@ export function handleSaveQuestion(optionOneText, optionTwoText, author) {
       optionTwoText,
       author
     }).then(question => dispatch(savePoll(question)));
+  };
+}
+
+function saveAnswer(authUser, qid, answer) {
+  return {
+    type: SAVE_ANSWER_TO_QUESTION,
+    authUser,
+    qid,
+    answer
+  };
+}
+
+//TODO: need to save this in the user as well
+export function handleSaveAnswer(authUser, qid, answer) {
+  return dispatch => {
+    return saveQuestionAnswer({
+      authUser,
+      qid,
+      answer
+    }).then(() => dispatch(saveAnswer(authUser, qid, answer)));
   };
 }

@@ -32,7 +32,7 @@ const Avatar = styled.img`
 
 const QuestionCard = props => {
   const { name, avatarURL, questionTeaser, toBeAnswered, id } = props;
-  console.log(props);
+  //   console.log(props);
 
   const button = toBeAnswered ? (
     <Link to={`/question/${id}`} css={{ width: `100%` }}>
