@@ -38,9 +38,9 @@ class QuestionPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { dispatch, authUser, id } = this.props;
+    const { authUser, id } = this.props;
     const { value } = this.state;
-    dispatch(handleSaveAnswer(authUser, id, value));
+    handleSaveAnswer(authUser, id, value);
   };
 
   handleChange = (e, { value }) => {
@@ -110,4 +110,7 @@ function mapStateToProps({ questions, users, authUser }, props) {
   };
 }
 
-export default connect(mapStateToProps)(QuestionPage);
+export default connect(
+  mapStateToProps,
+  { handleSaveAnswer }
+)(QuestionPage);

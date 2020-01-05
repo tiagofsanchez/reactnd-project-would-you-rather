@@ -1,4 +1,5 @@
 import { saveQuestion, saveQuestionAnswer } from "../utils/api";
+import { addQuestionToUser } from "../actions/users";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const SAVE_QUESTION = "SAVE_QUESTION";
@@ -25,7 +26,13 @@ export function handleSaveQuestion(optionOneText, optionTwoText, author) {
       optionOneText,
       optionTwoText,
       author
-    }).then(question => dispatch(savePoll(question)));
+    }).then(question => {
+      dispatch(savePoll(question));
+      dispatch(addQuestionToUser(question));
+    });
+    // .then(question => dispatch(addQuestionToUser(question)));
+    // If I use it like that I will not dispatch a payload and my action creator
+    // will pass and undefined const to my reducer
   };
 }
 
