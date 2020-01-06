@@ -6,7 +6,8 @@
 
 Why using dispatch directly I would always get an error?
 
-```jsx
+```js
+//NewQuestion.js
 handleSubmit = e => {
   e.preventDefault();
   const { optionOne, optionTwo } = this.state;
@@ -16,7 +17,19 @@ handleSubmit = e => {
   handleSaveQuestion(optionOne, optionTwo, authUser);
   this.setState(initState);
 };
-``;
+```
+
+However to load all my information in the app it worked very well
+
+```js
+//login.js
+ onSubmitHandler = e => {
+    e.preventDefault();
+    const { dispatch } = this.props;
+    const { userId } = this.state;
+    dispatch(receivedAuth(userId));
+    this.setState({ userId: "" });
+  };
 ```
 
 

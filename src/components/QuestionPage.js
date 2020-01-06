@@ -50,7 +50,11 @@ class QuestionPage extends Component {
   render() {
     const { name, avatarURL, optionOne, optionTwo } = this.props;
     const { value } = this.state;
-    console.log(this.props);
+    
+    let btnDisabled = true; 
+    if(value !== undefined ) { btnDisabled = false}
+   
+    
     return (
       <Fragment>
         <NavBar />
@@ -81,7 +85,7 @@ class QuestionPage extends Component {
                   checked={value === "optionTwo"}
                 />
               </Form.Field>
-              <Button content="Submit" fluid type="submit" />
+              <Button content="Submit" fluid type="submit" disabled={btnDisabled} />
             </Form>
           </Flex>
         </CardContainer>
