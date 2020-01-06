@@ -1,9 +1,12 @@
+import { showLoading, hideLoading } from "react-redux-loading";
+
 import { saveQuestion, saveQuestionAnswer } from "../utils/api";
 import { addQuestionToUser } from "../actions/users";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const SAVE_QUESTION = "SAVE_QUESTION";
 export const SAVE_ANSWER_TO_QUESTION = "SAVE_ANSWER_TO_QUESTION";
+
 
 export function receiveQuestions(questions) {
   return {
@@ -22,6 +25,7 @@ function savePoll(question) {
 //TODO: need to save this in the user as well
 export function handleSaveQuestion(optionOneText, optionTwoText, author) {
   return dispatch => {
+    dispatch(showLoading())
     return saveQuestion({
       optionOneText,
       optionTwoText,
@@ -29,7 +33,9 @@ export function handleSaveQuestion(optionOneText, optionTwoText, author) {
     }).then(question => {
       dispatch(savePoll(question));
       dispatch(addQuestionToUser(question));
+      dispatch(hideLoading())
     });
+                  
     // .then(question => dispatch(addQuestionToUser(question)));
     // If I use it like that I will not dispatch a payload and my action creator
     // will pass and undefined const to my reducer

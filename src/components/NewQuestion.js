@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Form, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { LoadingBar } from "react-redux-loading-bar";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
@@ -72,13 +73,16 @@ class NewQuestion extends Component {
 
   render() {
     const { optionOne, optionTwo, onSubmit } = this.state;
-    if (onSubmit === true) {
+    const loading = this.props.loadingBar.default;
+    console.log(`NewQUESTION: ${loading}`);
+
+    if (loading === 0 && onSubmit === true) {
       return <Redirect to="/" />;
     }
     return (
       <Fragment>
+        <LoadingBar style={{ backgroundColor: "blue", height: "100px" }} />
         <NavBar />
-
         <NewQuestionContainer>
           <h2 css={{ marginBottom: `40px`, color: `#e03997` }}>
             Would you rather...
@@ -109,13 +113,11 @@ class NewQuestion extends Component {
   }
 }
 
-function mapStateToProps({ authUser }) {
+function mapStateToProps({ authUser, loadingBar }) {
   return {
-    authUser
+    authUser,
+    loadingBar
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { handleSaveQuestion }
-)(NewQuestion);
+export default connect(mapStateToProps, { handleSaveQuestion })(NewQuestion);

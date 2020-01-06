@@ -2,6 +2,8 @@
 
 ## Dispatch issues
 
+### NewQuestions.js
+
 Why using dispatch directly I would always get an error?
 
 ```jsx
@@ -16,3 +18,8 @@ handleSubmit = e => {
 };
 ``;
 ```
+
+
+## LoadingBar from `react-reducer-loading-bar`
+
+I am not sure this is not working for my NewQuestions.js component 
