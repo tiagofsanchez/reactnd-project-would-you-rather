@@ -7,9 +7,10 @@ import reducer from "./reducers";
 import middleware from "./middleware";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 import App from "./components/App";
-const store = createStore(reducer, middleware);
+const store = createStore(reducer, composeWithDevTools(middleware));
 
 ReactDOM.render(
   <Router>
