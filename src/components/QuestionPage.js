@@ -38,9 +38,10 @@ class QuestionPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { authUser, id } = this.props;
+    const { authUser, id , handleSaveAnswer} = this.props;
     const { value } = this.state;
     handleSaveAnswer(authUser, id, value);
+    console.log(`authUSer: ${authUser},id: ${id}, option: ${value} `)
   };
 
   handleChange = (e, { value }) => {
@@ -50,6 +51,7 @@ class QuestionPage extends Component {
   render() {
     const { name, avatarURL, optionOne, optionTwo } = this.props;
     const { value } = this.state;
+    console.log(this.props)
     
     let btnDisabled = true; 
     if(value !== undefined ) { btnDisabled = false}
@@ -116,5 +118,5 @@ function mapStateToProps({ questions, users, authUser }, props) {
 
 export default connect(
   mapStateToProps,
-  { handleSaveAnswer }
+  {handleSaveAnswer}
 )(QuestionPage);

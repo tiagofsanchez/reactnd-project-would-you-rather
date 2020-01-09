@@ -79,6 +79,7 @@ class NewQuestion extends Component {
     if (loading === 0 && onSubmit === true) {
       return <Redirect to="/" />;
     }
+    
     return (
       <Fragment>
         <LoadingBar style={{ backgroundColor: "blue", height: "100px" }} />

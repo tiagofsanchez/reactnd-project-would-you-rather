@@ -18,6 +18,7 @@ export function saveQuestion(question) {
   return _saveQuestion(question);
 }
 
-export function saveQuestionAnswer({ authedUser, qid, answer }) {
-  return _saveQuestionAnswer({ authedUser, qid, answer });
+export function saveQuestionAnswer( authUser, qid, answer ) {
+  console.log(`authUSer: ${authUser},id: ${qid}, option: ${answer} `)
+  return _saveQuestionAnswer( authUser, qid, answer);
 }

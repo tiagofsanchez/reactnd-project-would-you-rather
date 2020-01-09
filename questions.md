@@ -4,7 +4,7 @@
 
 ### NewQuestions.js
 
-Why using dispatch directly I would always get an error?
+Why when using dispatch directly I would always get an error?
 
 ```js
 //NewQuestion.js
@@ -35,4 +35,4 @@ However to load all my information in the app it worked very well
 
 ## LoadingBar from `react-reducer-loading-bar`
 
-I am not sure this is not working for my NewQuestions.js component 
+I am not sure why this is not working for my NewQuestions.js component, need to check with Ravi
