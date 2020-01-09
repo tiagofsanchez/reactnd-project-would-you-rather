@@ -53,10 +53,10 @@ class NewQuestion extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { optionOne, optionTwo } = this.state;
-    const { handleSaveQuestion, authUser, dispatch } = this.props;
+    const { authUser, dispatch } = this.props;
     // dispatch(handleSaveQuestion(optionOne, optionTwo, authUser));
     // Why the above doesn't work;
-    handleSaveQuestion(optionOne, optionTwo, authUser);
+    dispatch (handleSaveQuestion(optionOne, optionTwo, authUser));
     this.setState({
       optionOne: "",
       optionTwo: "",
@@ -79,7 +79,10 @@ class NewQuestion extends Component {
     if (loading === 0 && onSubmit === true) {
       return <Redirect to="/" />;
     }
+
     
+    //TODO: loadingBAr, check Redux Sagax
+
     return (
       <Fragment>
         <LoadingBar style={{ backgroundColor: "blue", height: "100px" }} />
@@ -121,4 +124,4 @@ function mapStateToProps({ authUser, loadingBar }) {
   };
 }
 
-export default connect(mapStateToProps, { handleSaveQuestion })(NewQuestion);
+export default connect(mapStateToProps)(NewQuestion);
