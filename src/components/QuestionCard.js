@@ -25,7 +25,7 @@ const Flex = styled.div`
   flex-direction: column;
 `;
 
-//TODO: why is avatar different from the Leaderboard
+//TODO: check why is avatar different from the Leaderboard
 const Avatar = styled.img`
   height: 80px;
 `;
@@ -41,9 +41,11 @@ const QuestionCard = props => {
       </Button>
     </Link>
   ) : (
-    <Button fluid basic>
-      Check results
-    </Button>
+    <Link to={`/question-result/${id}`} css={{ width: `100%` }}>
+      <Button fluid basic>
+        Check results
+      </Button>
+    </Link>
   );
 
   return (
