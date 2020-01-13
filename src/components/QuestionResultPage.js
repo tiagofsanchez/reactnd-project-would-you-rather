@@ -84,7 +84,7 @@ class QuestionResultsPage extends Component {
       <div>
         <NavBar />
         <CardContainer>
-          <FlexColumn css={{ marginRight: `20px`, padding: `15px` }}>
+          <FlexColumn css={{ marginRight: `20px`, padding: `15px` , flexBasis: `160px`}}>
             <Avatar src={avatarURL} alt={name} />
             <h3 css={{ marginTop: `10px` }}>{name}</h3>
           </FlexColumn>

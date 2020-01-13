@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { Button, Form, Radio } from "semantic-ui-react";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
@@ -20,7 +21,7 @@ const CardContainer = styled.div`
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
 `;
 
@@ -39,29 +40,38 @@ const Avatar = styled.img`
 `;
 
 class QuestionPage extends Component {
-  state = {};
+  state = {
+    value: null,
+    isAnswered: false
+  };
 
   handleSubmit = e => {
     e.preventDefault();
     const { authUser, id, handleSaveAnswer } = this.props;
     const { value } = this.state;
     handleSaveAnswer(authUser, id, value);
-    console.log(`authUSer: ${authUser},id: ${id}, option: ${value} `);
+    this.setState(prevState => ({
+      ...prevState, 
+      isAnswered: true,
+    }))
   };
 
   handleChange = (e, { value }) => {
     this.setState({ value });
   };
 
-  handleClick =() => {
-    const { history } = this.props; 
-    history.goBack()
-  }
+  handleClick = () => {
+    const { history } = this.props;
+    history.goBack();
+  };
 
   render() {
-    const { name, avatarURL, optionOne, optionTwo } = this.props;
-    const { value } = this.state;
-    console.log(this.props);
+    const { name, avatarURL, optionOne, optionTwo, id } = this.props;
+    const { value , isAnswered} = this.state;
+    
+    if (isAnswered) { 
+      return <Redirect to={`/question-result/${id}`} />
+    }
 
     let btnDisabled = true;
     if (value !== undefined) {
@@ -108,7 +118,12 @@ class QuestionPage extends Component {
           </Flex>
         </CardContainer>
         <BtnContainer>
-          <Button content="Back" basic color="pink" onClick={this.handleClick}/>
+          <Button
+            content="Back"
+            basic
+            color="pink"
+            onClick={this.handleClick}
+          />
         </BtnContainer>
       </Fragment>
     );

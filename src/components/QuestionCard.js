@@ -9,7 +9,7 @@ import styled from "@emotion/styled";
 
 const CardContainer = styled.div`
   margin: auto;
-  width: 400px;
+  width: 70%;
   border: solid #e03997 1px;
   padding: 10px 20px 10px 20px;
   border-radius: 4px;
@@ -17,7 +17,7 @@ const CardContainer = styled.div`
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 `;
 
 const Flex = styled.div`
@@ -50,7 +50,7 @@ const QuestionCard = props => {
 
   return (
     <CardContainer>
-      <Flex>
+      <Flex css={{flexBasis: `160px`}}>
         <Avatar src={avatarURL} alt={name} />
         <h4 css={{ margin: `none` }}>{name}</h4>
       </Flex>
