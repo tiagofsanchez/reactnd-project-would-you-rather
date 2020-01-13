@@ -1,3 +1,10 @@
+# TODOS: 
+1. Put timestamp order on the questions
+2. "To be Answered" vs Already Answered
+3. Styling for responsiveness 
+4. Leaderboard to show how the user stands across other users;
+
+
 # QUESTIONS
 
 ## Dispatch issues

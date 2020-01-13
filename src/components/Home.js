@@ -35,7 +35,7 @@ class Home extends Component {
   render() {
     const { toBeAnswered } = this.state;
     const { answeredId, unansweredId } = this.props.questionsSplit;
-
+    
     const questionsToAnswer = unansweredId.map(id => (
       <QuestionCard key={id} id={id} toBeAnswered={toBeAnswered} />
     ));

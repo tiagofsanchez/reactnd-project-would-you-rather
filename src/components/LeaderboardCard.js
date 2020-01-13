@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 /* STYLED COMPONENT */
 
 const CardContainer = styled.div`
-  width: 80%;
+  width: 70%;
   margin: auto;
   border: solid #e03997 1px;
   padding: 10px 20px 10px 20px;
@@ -18,14 +18,18 @@ const CardContainer = styled.div`
   justify-content: space-between;
 `;
 
+const FlexColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Flex = styled.div`
   display: flex;
-  flex-direction: column-reverse;
+  align-items: center;
 `;
 
 const Avatar = styled.img`
   height: 80px;
-  padding: 8px;
 `;
 
 const Score = styled.div`
@@ -42,14 +46,15 @@ const LeaderboardCard = props => {
   console.log(props);
   return (
     <CardContainer>
-      <Flex>
-        <h4>{name}</h4>
-        <Avatar src={avatarURL} alt={name} />
-      </Flex>
-      <Flex css={{ fontSize: `large` }}>
-        <p>{`Questions asked: ${questionsAsked}`}</p>
-        <hr />
-        <p>{`Questions answered: ${questionsAnswered}`}</p>
+      <Flex css={{flexBasis: `460px`}}>
+        <FlexColumn css={{flexBasis: `160px`}}>
+          <Avatar src={avatarURL} alt={name} />
+          <h4>{name}</h4>
+        </FlexColumn>
+        <FlexColumn css={{ fontSize: `large`, flexBasis: `300px` , alignItems: `flex-start`}}>
+          <p>{`Questions asked: ${questionsAsked}`}</p>
+          <p>{`Questions answered: ${questionsAnswered}`}</p>
+        </FlexColumn>
       </Flex>
       <Score>
         <p>{score}</p>

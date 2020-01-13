@@ -11,7 +11,7 @@ export function userOptions(users) {
 }
 
 //This function will set up the users with the proper data structure
-// and the correct order for the leaderboard page
+// and the correct order for the leaderboard page, decending order
 export function leaderboardData(users) {
   return Object.keys(users)
     .map(user => {
