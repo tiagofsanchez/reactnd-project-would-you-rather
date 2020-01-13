@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Progress } from "semantic-ui-react";
+import { Progress, Button } from "semantic-ui-react";
 
 import NavBar from "./NavBar";
 
@@ -21,6 +21,11 @@ const CardContainer = styled.div`
   justify-content: space-between;
 `;
 
+const BtnContainer = styled.div`
+  margin: auto;
+  width: 70%;
+`;
+
 const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,6 +38,7 @@ const Flex = styled.div`
 //TODO: check why is avatar different from the Leaderboard
 const Avatar = styled.img`
   height: 80px;
+  margin-right: 20px;
 `;
 
 const Option = styled.img`
@@ -44,6 +50,12 @@ const optionOne = "https://image.flaticon.com/icons/svg/752/752665.svg";
 const optionTwo = "https://image.flaticon.com/icons/svg/752/752665.svg";
 
 class QuestionResultsPage extends Component {
+  
+  handleClick =()=> { 
+    const { history } = this.props
+    history.goBack()
+  } 
+
   render() {
     const { avatarURL, name } = this.props;
     console.log(this.props);
@@ -55,7 +67,7 @@ class QuestionResultsPage extends Component {
             <Avatar src={avatarURL} alt={name} />
             <h3>{name}</h3>
           </FlexColumn>
-          <FlexColumn>
+          <FlexColumn css={{ width: `100%` }}>
             <Flex>
               <Option src={optionTwo} />
               <Progress />
@@ -66,6 +78,9 @@ class QuestionResultsPage extends Component {
             </Flex>
           </FlexColumn>
         </CardContainer>
+        <BtnContainer>
+          <Button content="Back" color='pink' basic onClick={this.handleClick}/>
+        </BtnContainer>
       </div>
     );
   }

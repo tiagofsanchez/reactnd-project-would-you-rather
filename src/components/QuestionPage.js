@@ -11,7 +11,7 @@ import NavBar from "./NavBar";
 /* STYLED COMPONENT */
 
 const CardContainer = styled.div`
-  width: 60%;
+  width: 70%;
   margin: auto;
   border: solid #e03997 1px;
   padding: 10px 20px 10px 20px;
@@ -22,6 +22,11 @@ const CardContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+`;
+
+const BtnContainer = styled.div`
+  width: 70%;
+  margin: auto;
 `;
 
 const Flex = styled.div`
@@ -38,25 +43,31 @@ class QuestionPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { authUser, id , handleSaveAnswer} = this.props;
+    const { authUser, id, handleSaveAnswer } = this.props;
     const { value } = this.state;
     handleSaveAnswer(authUser, id, value);
-    console.log(`authUSer: ${authUser},id: ${id}, option: ${value} `)
+    console.log(`authUSer: ${authUser},id: ${id}, option: ${value} `);
   };
 
   handleChange = (e, { value }) => {
     this.setState({ value });
   };
 
+  handleClick =() => {
+    const { history } = this.props; 
+    history.goBack()
+  }
+
   render() {
     const { name, avatarURL, optionOne, optionTwo } = this.props;
     const { value } = this.state;
-    console.log(this.props)
-    
-    let btnDisabled = true; 
-    if(value !== undefined ) { btnDisabled = false}
-   
-    
+    console.log(this.props);
+
+    let btnDisabled = true;
+    if (value !== undefined) {
+      btnDisabled = false;
+    }
+
     return (
       <Fragment>
         <NavBar />
@@ -87,10 +98,18 @@ class QuestionPage extends Component {
                   checked={value === "optionTwo"}
                 />
               </Form.Field>
-              <Button content="Submit" fluid type="submit" disabled={btnDisabled} />
+              <Button
+                content="Submit"
+                fluid
+                type="submit"
+                disabled={btnDisabled}
+              />
             </Form>
           </Flex>
         </CardContainer>
+        <BtnContainer>
+          <Button content="Back" basic color="pink" onClick={this.handleClick}/>
+        </BtnContainer>
       </Fragment>
     );
   }
@@ -116,7 +135,4 @@ function mapStateToProps({ questions, users, authUser }, props) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  {handleSaveAnswer}
-)(QuestionPage);
+export default connect(mapStateToProps, { handleSaveAnswer })(QuestionPage);

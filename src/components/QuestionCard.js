@@ -36,13 +36,13 @@ const QuestionCard = props => {
 
   const button = toBeAnswered ? (
     <Link to={`/question/${id}`} css={{ width: `100%` }}>
-      <Button fluid basic>
+      <Button fluid basic color='pink'>
         Answer
       </Button>
     </Link>
   ) : (
     <Link to={`/question-result/${id}`} css={{ width: `100%` }}>
-      <Button fluid basic>
+      <Button fluid basic color='pink'>
         Check results
       </Button>
     </Link>
