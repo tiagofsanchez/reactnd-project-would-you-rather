@@ -65,17 +65,17 @@ class NavBar extends Component {
         <div>
           <Ul>
             <Li>
-              <NavLink exact to="/" activeStyle={activeLink}>
+              <NavLink exact to="/" activeStyle={activeLink} css={{color:`black`}}>
                 Home
               </NavLink>
             </Li>
             <Li>
-              <NavLink exact to="/newquestion" activeStyle={activeLink}>
+              <NavLink exact to="/newquestion" activeStyle={activeLink} css={{color:`black`}}>
                 New question
               </NavLink>
             </Li>
             <Li>
-              <NavLink exact to="/leaderboard" activeStyle={activeLink}>
+              <NavLink exact to="/leaderboard" activeStyle={activeLink} css={{color:`black`}}>
                 Leaderboard
               </NavLink>
             </Li>

@@ -33,53 +33,81 @@ const FlexColumn = styled.div`
 
 const Flex = styled.div`
   display: flex;
+  align-items: center;
+  padding: 5px; 
+  margin: 10px; 
+  border-radius: 4px; 
 `;
 
 //TODO: check why is avatar different from the Leaderboard
 const Avatar = styled.img`
   height: 80px;
-  margin-right: 20px;
 `;
 
 const Option = styled.img`
   height: 20px;
-  margin: 10px;
+  margin-right: 10px;
 `;
 
-const optionOne = "https://image.flaticon.com/icons/svg/752/752665.svg";
-const optionTwo = "https://image.flaticon.com/icons/svg/752/752665.svg";
+const H4 = styled.h4`
+  margin: 0px 10px 0px 0px;
+`;
+
+//Styling for what the user selects
+const userAnswerStyle = { backgroundColor: `lavenderblush` };
+
+const optionOneLogo = "https://image.flaticon.com/icons/svg/752/752665.svg";
+const optionTwoLogo = "https://image.flaticon.com/icons/svg/752/752665.svg";
 
 class QuestionResultsPage extends Component {
-  
-  handleClick =()=> { 
-    const { history } = this.props
-    history.goBack()
-  } 
+  handleClick = () => {
+    const { history } = this.props;
+    history.goBack();
+  };
 
   render() {
-    const { avatarURL, name } = this.props;
+    const { avatarURL, name, optionOne, optionTwo, userAnswer } = this.props;
     console.log(this.props);
+
+    //checking what is the logedin user choice 
+    let optionOneStyle = null;
+    let optionTwoStyle = null;
+    if (userAnswer === "optionOne") {
+      optionOneStyle = userAnswerStyle;
+      optionTwoStyle = null;
+    } else {
+      optionOneStyle = null;
+      optionTwoStyle = userAnswerStyle;
+    }
+
     return (
       <div>
         <NavBar />
         <CardContainer>
-          <FlexColumn>
+          <FlexColumn css={{ marginRight: `20px`, padding: `15px` }}>
             <Avatar src={avatarURL} alt={name} />
-            <h3>{name}</h3>
+            <h3 css={{ marginTop: `10px` }}>{name}</h3>
           </FlexColumn>
-          <FlexColumn css={{ width: `100%` }}>
-            <Flex>
-              <Option src={optionTwo} />
+          <FlexColumn css={{ width: `100% ` }}>
+            <Flex css={optionOneStyle} >
+              <Option src={optionOneLogo}/>
+              <H4>{optionOne}</H4>
               <Progress />
             </Flex>
-            <Flex>
-              <Option src={optionTwo} />
+            <Flex css={optionTwoStyle} >
+              <Option src={optionTwoLogo}/>
+              <H4>{optionTwo}</H4>
               <Progress />
             </Flex>
           </FlexColumn>
         </CardContainer>
         <BtnContainer>
-          <Button content="Back" color='pink' basic onClick={this.handleClick}/>
+          <Button
+            content="Back"
+            color="pink"
+            basic
+            onClick={this.handleClick}
+          />
         </BtnContainer>
       </div>
     );
@@ -90,16 +118,22 @@ function mapStateToProps({ users, questions, authUser }, props) {
   const id = props.match.params.id;
   const name = users[questions[id].author].name;
   const avatarURL = users[questions[id].author].avatarURL;
+  const optionOne = questions[id].optionOne.text;
+  const optionTwo = questions[id].optionTwo.text;
   const optionOneVotes = questions[id].optionOne.votes.length;
   const optionTwoVotes = questions[id].optionTwo.votes.length;
   const totalVotes = optionOneVotes + optionTwoVotes;
+  const userAnswer = users[authUser].answers[id];
 
   return {
     name,
     avatarURL,
+    optionOne,
+    optionTwo,
     optionOneVotes,
     optionTwoVotes,
-    totalVotes
+    totalVotes,
+    userAnswer
   };
 }
 
