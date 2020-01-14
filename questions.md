@@ -1,8 +1,10 @@
 # TODOS: 
 1. Put timestamp order on the questions
 2."To be Answered" vs "Already Answered"; DONE! 
-3. Styling for responsiveness 
+3. Styling for responsiveness DONE FOR NOW! 
 4. Leaderboard to show how the user stands across other users; DONE!
+5. propTypes implementation! 
+6. Need to check the rubric of the project!
 
 
 # QUESTIONS

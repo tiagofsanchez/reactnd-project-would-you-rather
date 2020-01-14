@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 import LeaderboardCard from "./LeaderboardCard";
 
 const LeaderboardPage = props => {
-  const { leaderboard } = props;
+  const { leaderboard , authUser} = props;
   return (
     <div>
       <NavBar />
@@ -14,11 +14,13 @@ const LeaderboardPage = props => {
         return (
           <LeaderboardCard
             key={user.id}
+            id={user.id}
             name={user.name}
             avatarURL={user.avatarURL}
             questionsAnswered={user.questionsAnswered}
             questionsAsked={user.questionsAsked}
             score={user.score}
+            authUser={authUser}
           />
         );
       })}
@@ -26,10 +28,11 @@ const LeaderboardPage = props => {
   );
 };
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users , authUser }) {
   const leaderboard = leaderboardData(users);
   return {
-    leaderboard
+    leaderboard,
+    authUser 
   };
 }
 

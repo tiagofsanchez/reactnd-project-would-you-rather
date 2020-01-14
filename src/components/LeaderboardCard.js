@@ -41,11 +41,18 @@ const Score = styled.div`
   font-size: xx-large;
 `;
 
+//Styling for what the rsult of the user that is Authed
+const userAuthStyle = { backgroundColor: `lavenderblush` };
+
 const LeaderboardCard = props => {
-  const { name, avatarURL, questionsAnswered, questionsAsked, score } = props;
-  console.log(props);
+  const { name, avatarURL, questionsAnswered, questionsAsked, score , authUser , id } = props;
+  let shadeUser = null; 
+  if( authUser === id ) { 
+    shadeUser = userAuthStyle 
+  }
+
   return (
-    <CardContainer>
+    <CardContainer css={shadeUser}>
       <Flex css={{flexBasis: `460px`}}>
         <FlexColumn css={{flexBasis: `160px`}}>
           <Avatar src={avatarURL} alt={name} />
