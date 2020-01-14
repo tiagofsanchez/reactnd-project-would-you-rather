@@ -18,6 +18,7 @@ const CardContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
 `;
 
 const Flex = styled.div`
@@ -36,13 +37,13 @@ const QuestionCard = props => {
 
   const button = toBeAnswered ? (
     <Link to={`/question/${id}`} css={{ width: `100%` }}>
-      <Button fluid basic color='pink'>
+      <Button floated='right' basic color='pink' >
         Answer
       </Button>
     </Link>
   ) : (
     <Link to={`/question-result/${id}`} css={{ width: `100%` }}>
-      <Button fluid basic color='pink'>
+      <Button floated='right' basic color='pink'>
         Check results
       </Button>
     </Link>
@@ -54,7 +55,7 @@ const QuestionCard = props => {
         <Avatar src={avatarURL} alt={name} />
         <h4 css={{ margin: `none` }}>{name}</h4>
       </Flex>
-      <Flex css={{ alignItems: `baseline` }}>
+      <Flex css={{ alignItems: `baseline`, flex: `2 1 0`, marginLeft: `20px` }}>
         <h2 css={{ color: `#e61a8d`, fontStyle: `bold` }}>
           Would you rather...{" "}
         </h2>
