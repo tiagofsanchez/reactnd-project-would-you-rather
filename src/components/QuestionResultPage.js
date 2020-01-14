@@ -34,9 +34,9 @@ const FlexColumn = styled.div`
 const Flex = styled.div`
   display: flex;
   align-items: center;
-  padding: 5px; 
-  margin: 10px; 
-  border-radius: 4px; 
+  padding: 8px 8px 5px 8px;
+  margin: 10px;
+  border-radius: 4px;
 `;
 
 //TODO: check why is avatar different from the Leaderboard
@@ -47,17 +47,19 @@ const Avatar = styled.img`
 const Option = styled.img`
   height: 20px;
   margin-right: 10px;
+  flex-basis: 10%;
 `;
 
 const H4 = styled.h4`
   margin: 0px 10px 0px 0px;
+  flex-basis: 30%; 
 `;
 
 //Styling for what the user selects
 const userAnswerStyle = { backgroundColor: `lavenderblush` };
 
-const optionOneLogo = "https://image.flaticon.com/icons/svg/752/752665.svg";
-const optionTwoLogo = "https://image.flaticon.com/icons/svg/752/752665.svg";
+const optionOneLogo = "https://image.flaticon.com/icons/svg/73/73207.svg";
+const optionTwoLogo = "https://image.flaticon.com/icons/svg/91/91617.svg";
 
 class QuestionResultsPage extends Component {
   handleClick = () => {
@@ -66,10 +68,19 @@ class QuestionResultsPage extends Component {
   };
 
   render() {
-    const { avatarURL, name, optionOne, optionTwo, userAnswer } = this.props;
-    console.log(this.props);
+    const {
+      avatarURL,
+      name,
+      optionOne,
+      optionTwo,
+      userAnswer,
+      optionOneVotes,
+      optionTwoVotes,
+      totalVotes
+    } = this.props;
+    
 
-    //checking what is the logedin user choice 
+    //checking what is the loged user to display her option
     let optionOneStyle = null;
     let optionTwoStyle = null;
     if (userAnswer === "optionOne") {
@@ -84,20 +95,32 @@ class QuestionResultsPage extends Component {
       <div>
         <NavBar />
         <CardContainer>
-          <FlexColumn css={{ marginRight: `20px`, padding: `15px` , flexBasis: `160px`}}>
+          <FlexColumn
+            css={{ marginRight: `20px`, padding: `15px`, flexBasis: `160px` }}
+          >
             <Avatar src={avatarURL} alt={name} />
             <h3 css={{ marginTop: `10px` }}>{name}</h3>
           </FlexColumn>
           <FlexColumn css={{ width: `100% ` }}>
-            <Flex css={optionOneStyle} >
-              <Option src={optionOneLogo}/>
+            <Flex css={optionOneStyle}>
+              <Option src={optionOneLogo} />
               <H4>{optionOne}</H4>
-              <Progress />
+              <Progress
+                value={optionOneVotes}
+                total={totalVotes}
+                progress="percent"
+                css={{ flexBasis: `60%` }}
+              >{`${optionOneVotes} out of ${totalVotes}`}</Progress>
             </Flex>
-            <Flex css={optionTwoStyle} >
-              <Option src={optionTwoLogo}/>
+            <Flex css={optionTwoStyle}>
+              <Option src={optionTwoLogo} />
               <H4>{optionTwo}</H4>
-              <Progress />
+              <Progress
+                value={optionTwoVotes}
+                total={totalVotes}
+                progress="percent"
+                css={{ flexBasis: `60%` }}
+              >{`${optionTwoVotes} out of ${totalVotes}`}</Progress>
             </Flex>
           </FlexColumn>
         </CardContainer>
