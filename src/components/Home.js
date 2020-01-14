@@ -15,6 +15,15 @@ const HomeContainer = styled.div`
   margin: auto;
 `;
 
+const Flex = styled.div`
+  display: flex;
+  margin-bottom: 40px;
+`;
+
+const Img = styled.img`
+  height: 20px;
+`;
+
 class Home extends Component {
   state = {
     toBeAnswered: true
@@ -32,10 +41,12 @@ class Home extends Component {
     });
   };
 
+  let;
+
   render() {
     const { toBeAnswered } = this.state;
     const { answeredId, unansweredId } = this.props.questionsSplit;
-    
+
     const questionsToAnswer = unansweredId.map(id => (
       <QuestionCard key={id} id={id} toBeAnswered={toBeAnswered} />
     ));
@@ -48,15 +59,26 @@ class Home extends Component {
       <Fragment>
         <NavBar />
         <HomeContainer>
-          <ButtonGroup fluid basic size="big" style={{ marginBottom: `20px` }}>
-            <Button active={toBeAnswered} onClick={this.tbAnsweredHandler}>
-              To be answered
-            </Button>
-            <Button.Or />
-            <Button active={!toBeAnswered} onClick={this.answeredHandler}>
-              Already answered
-            </Button>
-          </ButtonGroup>
+          <Flex>
+            <Button.Group fluid>
+              <Button
+                active={toBeAnswered}
+                basic={!toBeAnswered}
+                color="pink"
+                onClick={this.tbAnsweredHandler}
+              >
+                To be answered
+              </Button>
+              <Button
+                active={!toBeAnswered}
+                basic={toBeAnswered}
+                color="pink"
+                onClick={this.answeredHandler}
+              >
+                Check this answers!
+              </Button>
+            </Button.Group>
+          </Flex>
           <div>{toBeAnswered ? questionsToAnswer : answeredQuestions}</div>
         </HomeContainer>
       </Fragment>
