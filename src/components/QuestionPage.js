@@ -74,7 +74,7 @@ class QuestionPage extends Component {
     }
 
     let btnDisabled = true;
-    if (value !== undefined) {
+    if (value !== null) {
       btnDisabled = false;
     }
 
