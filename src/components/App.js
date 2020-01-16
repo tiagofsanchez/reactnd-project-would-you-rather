@@ -9,6 +9,7 @@ import Home from "./Home";
 import NewQuestion from "./NewQuestion";
 import QuestionPage from "./QuestionPage";
 import QuestionResultPage from "./QuestionResultPage";
+import NoMatch from './NoMatch';
 
 class App extends Component {
   componentDidMount() {
@@ -35,6 +36,7 @@ class App extends Component {
               path="/question-result/:id"
               component={QuestionResultPage}
             />
+            <Route component={NoMatch}/>
           </Switch>
         )}
       </div>

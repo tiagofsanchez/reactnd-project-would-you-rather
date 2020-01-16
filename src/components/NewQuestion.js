@@ -13,7 +13,7 @@ import NavBar from "./NavBar";
 /* STYLED COMPONENTS */
 
 const NewQuestionContainer = styled.div`
-  width: 80%;
+  width: 70%;
   margin: auto;
   margin-top: 70px;
   border: solid #e03997 1px;

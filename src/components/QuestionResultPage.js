@@ -112,6 +112,7 @@ class QuestionResultsPage extends Component {
                 value={optionOneVotes}
                 total={totalVotes}
                 progress="percent"
+                precision='1%'
                 css={{ flexBasis: `60%` }}
               >{`${optionOneVotes} out of ${totalVotes}`}</Progress>
             </Flex>
@@ -122,6 +123,7 @@ class QuestionResultsPage extends Component {
                 value={optionTwoVotes}
                 total={totalVotes}
                 progress="percent"
+                precision='1%'
                 css={{ flexBasis: `60%` }}
               >{`${optionTwoVotes} out of ${totalVotes}`}</Progress>
             </Flex>
