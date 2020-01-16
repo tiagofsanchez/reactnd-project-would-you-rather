@@ -24,6 +24,8 @@ const CardContainer = styled.div`
 const BtnContainer = styled.div`
   margin: auto;
   width: 70%;
+  display: flex; 
+  justify-content: space-between;
 `;
 
 const FlexColumn = styled.div`
@@ -76,7 +78,8 @@ class QuestionResultsPage extends Component {
       userAnswer,
       optionOneVotes,
       optionTwoVotes,
-      totalVotes
+      totalVotes,
+      logedInUser
     } = this.props;
     
 
@@ -131,6 +134,7 @@ class QuestionResultsPage extends Component {
             basic
             onClick={this.handleClick}
           />
+          <div css={{backgroundColor: `lavenderblush`, padding: `10px`}}>{`${logedInUser} selection`}</div>
         </BtnContainer>
       </div>
     );
@@ -147,6 +151,7 @@ function mapStateToProps({ users, questions, authUser }, props) {
   const optionTwoVotes = questions[id].optionTwo.votes.length;
   const totalVotes = optionOneVotes + optionTwoVotes;
   const userAnswer = users[authUser].answers[id];
+  const logedInUser = users[authUser].name
 
   return {
     name,
@@ -156,7 +161,8 @@ function mapStateToProps({ users, questions, authUser }, props) {
     optionOneVotes,
     optionTwoVotes,
     totalVotes,
-    userAnswer
+    userAnswer,
+    logedInUser
   };
 }
 

@@ -1,5 +1,5 @@
 # TODOS: 
-1. Put timestamp order on the questions
+1. Put timestamp order on the questions DONE!! 
 2."To be Answered" vs "Already Answered"; DONE! 
 3. Styling for responsiveness DONE FOR NOW! BUT WANT TO IMPROVE THIS 
 4. Leaderboard to show how the user stands across other users; DONE!
