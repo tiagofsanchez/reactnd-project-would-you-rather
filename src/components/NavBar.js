@@ -70,7 +70,7 @@ class NavBar extends Component {
               </NavLink>
             </Li>
             <Li>
-              <NavLink exact to="/newquestion" activeStyle={activeLink} css={{color:`black`}}>
+              <NavLink exact to="/add" activeStyle={activeLink} css={{color:`black`}}>
                 New question
               </NavLink>
             </Li>
