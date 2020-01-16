@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Form, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { LoadingBar } from "react-redux-loading-bar";
+import LoadingBar from "react-redux-loading-bar";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
@@ -56,7 +56,7 @@ class NewQuestion extends Component {
     const { authUser, dispatch } = this.props;
     // dispatch(handleSaveQuestion(optionOne, optionTwo, authUser));
     // Why the above doesn't work;
-    dispatch (handleSaveQuestion(optionOne, optionTwo, authUser));
+    dispatch(handleSaveQuestion(optionOne, optionTwo, authUser));
     this.setState({
       optionOne: "",
       optionTwo: "",
@@ -71,27 +71,29 @@ class NewQuestion extends Component {
     });
   };
 
-  
-
   render() {
     const { optionOne, optionTwo, onSubmit } = this.state;
     const loading = this.props.loadingBar.default;
-    
-    let isBtnDisabled = true; 
-    if( optionOne !== "" & optionTwo !== "" ) {
-      isBtnDisabled = false
+
+    let isBtnDisabled = true;
+    if ((optionOne !== "") & (optionTwo !== "")) {
+      isBtnDisabled = false;
     }
 
     if (loading === 0 && onSubmit === true) {
       return <Redirect to="/" />;
     }
 
-    
     //TODO: loadingBAr, check Redux Sagax
 
     return (
       <Fragment>
-        <LoadingBar style={{ backgroundColor: "blue", height: "100px" }} />
+        <LoadingBar
+          style={{ backgroundColor: "#e03997" }}
+          updateTime={10}
+          maxProgress={95}
+          progressIncrease={10}
+        />
         <NavBar />
         <NewQuestionContainer>
           <h2 css={{ marginBottom: `40px`, color: `#e03997` }}>
@@ -114,7 +116,12 @@ class NewQuestion extends Component {
                 fluid
                 onChange={this.handleChange}
               />
-              <Button fluid content="Add new question" type="submit" disabled={isBtnDisabled}/>
+              <Button
+                fluid
+                content="Add new question"
+                type="submit"
+                disabled={isBtnDisabled}
+              />
             </Container>
           </Form>
         </NewQuestionContainer>
