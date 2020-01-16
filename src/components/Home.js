@@ -55,6 +55,7 @@ class Home extends Component {
       <QuestionCard id={id} key={id} toBeAnswered={toBeAnswered} />
     ));
 
+    console.log(this.props)
     return (
       <Fragment>
         <NavBar />
@@ -94,7 +95,7 @@ function mapStateToProps({ authUser, questions, users }) {
   return {
     authUser,
     questions,
-    questionsSplit
+    questionsSplit,
   };
 }
 

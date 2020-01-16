@@ -1,5 +1,16 @@
 # Would you rather UDACITY project
 
+
+## Installation
+
+To get started and test my project
+
+- install project dependencies with `npm install`
+- start the development server with `npm start`
+
+
+## The project approach
+
 Here you will find my project and the steps that I have make to build it. I will follow the guidelines provided by udacity team and they are as follows:
 
 1. Draw All of the Views of the App

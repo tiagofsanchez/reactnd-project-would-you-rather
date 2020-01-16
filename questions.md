@@ -1,47 +1,17 @@
 # TODOS: 
 1. Put timestamp order on the questions
 2."To be Answered" vs "Already Answered"; DONE! 
-3. Styling for responsiveness DONE FOR NOW! 
+3. Styling for responsiveness DONE FOR NOW! BUT WANT TO IMPROVE THIS 
 4. Leaderboard to show how the user stands across other users; DONE!
 5. propTypes implementation! 
 6. Need to check the rubric of the project!
+7. Check Redux Saga for the loading piece or fix the loadingBar from "react-redux-loading-bar
 
 
-# QUESTIONS
 
-## Dispatch issues
+# QUESTIONS & NOTES 
 
-### NewQuestions.js
+## Log in flow
 
-Why when using dispatch directly I would always get an error?
+In any application I don't think I should be loading all the data before the user gets authenticated and we should be doing that after
 
-```js
-//NewQuestion.js
-handleSubmit = e => {
-  e.preventDefault();
-  const { optionOne, optionTwo } = this.state;
-  const { handleSaveQuestion, authUser, dispatch } = this.props;
-  // dispatch(handleSaveQuestion(optionOne, optionTwo, authUser));
-  // Why the above doesn't work;
-  handleSaveQuestion(optionOne, optionTwo, authUser);
-  this.setState(initState);
-};
-```
-
-However to load all my information in the app it worked very well
-
-```js
-//login.js
- onSubmitHandler = e => {
-    e.preventDefault();
-    const { dispatch } = this.props;
-    const { userId } = this.state;
-    dispatch(receivedAuth(userId));
-    this.setState({ userId: "" });
-  };
-```
-
-
-## LoadingBar from `react-reducer-loading-bar`
-
-I am not sure why this is not working for my NewQuestions.js component, need to check with Ravi

@@ -71,10 +71,16 @@ class NewQuestion extends Component {
     });
   };
 
+  
+
   render() {
     const { optionOne, optionTwo, onSubmit } = this.state;
     const loading = this.props.loadingBar.default;
-    console.log(`NewQUESTION: ${loading}`);
+    
+    let isBtnDisabled = true; 
+    if( optionOne !== "" & optionTwo !== "" ) {
+      isBtnDisabled = false
+    }
 
     if (loading === 0 && onSubmit === true) {
       return <Redirect to="/" />;
@@ -108,7 +114,7 @@ class NewQuestion extends Component {
                 fluid
                 onChange={this.handleChange}
               />
-              <Button fluid content="Add new question" type="submit" />
+              <Button fluid content="Add new question" type="submit" disabled={isBtnDisabled}/>
             </Container>
           </Form>
         </NewQuestionContainer>
