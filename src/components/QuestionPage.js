@@ -82,11 +82,17 @@ class QuestionPage extends Component {
       <Fragment>
         <NavBar />
         <CardContainer>
-          <Flex css={{ flexBasis: `160px` }}>
+          <Flex  css={{
+              backgroundColor: `#f9f9f9`,
+              padding: `25px`,
+              borderRadius: `5px`,
+              flex: `1 1 160px`, 
+              marginRight: `15px`
+            }}>
             <Avatar src={avatarURL} alt={name} />
             <h4 css={{ margin: `none` }}>{name}</h4>
           </Flex>
-          <Flex css={{ alignItems: `baseline`, flexBasis: `300px` }}>
+          <Flex css={{ alignItems: `baseline`, flex: `4 1 300px`, marginTop: `15px`}}>
             <h2 css={{ color: `#e61a8d`, fontStyle: `bold` }}>
               Would you rather...{" "}
             </h2>
@@ -110,7 +116,8 @@ class QuestionPage extends Component {
               </Form.Field>
               <Button
                 content="Submit"
-                fluid
+                color='pink'
+                floated='right'
                 type="submit"
                 disabled={btnDisabled}
               />

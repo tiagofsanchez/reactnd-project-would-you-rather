@@ -16,6 +16,7 @@ const CardContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap-reverse;
 `;
 
 const FlexColumn = styled.div`
@@ -39,33 +40,56 @@ const Score = styled.div`
   background-color: #e03997;
   color: white;
   font-size: xx-large;
+  align
 `;
 
 //Styling for what the rsult of the user that is Authed
 const userAuthStyle = { backgroundColor: `lavenderblush` };
 
 const LeaderboardCard = props => {
-  const { name, avatarURL, questionsAnswered, questionsAsked, score , authUser , id } = props;
-  let shadeUser = null; 
-  if( authUser === id ) { 
-    shadeUser = userAuthStyle 
+  const {
+    name,
+    avatarURL,
+    questionsAnswered,
+    questionsAsked,
+    score,
+    authUser,
+    id
+  } = props;
+  let shadeUser = null;
+  if (authUser === id) {
+    shadeUser = userAuthStyle;
   }
 
   return (
     <CardContainer css={shadeUser}>
-      <Flex css={{flexBasis: `460px`}}>
-        <FlexColumn css={{flexBasis: `160px`}}>
+      <Flex css={{ flex: `4 1 360px`, flexWrap: `wrap` }}>
+        <FlexColumn
+          css={{
+            flex: `1 1 160px`,
+            marginTop: `20px`,
+            marginBottom: `20px`,
+          }}
+        >
           <Avatar src={avatarURL} alt={name} />
           <h4>{name}</h4>
         </FlexColumn>
-        <FlexColumn css={{ fontSize: `large`, flexBasis: `300px` , alignItems: `flex-start`}}>
+        <FlexColumn
+          css={{
+            fontSize: `large`,
+            flex: `4 1 200px`,
+            alignItems: `flex-start`
+          }}
+        >
           <p>{`Questions asked: ${questionsAsked}`}</p>
           <p>{`Questions answered: ${questionsAnswered}`}</p>
         </FlexColumn>
       </Flex>
-      <Score>
-        <p>{score}</p>
-      </Score>
+      <Flex css={{ flex: `0 0 50px ` }}>
+        <Score>
+          <p>{score}</p>
+        </Score>
+      </Flex>
     </CardContainer>
   );
 };

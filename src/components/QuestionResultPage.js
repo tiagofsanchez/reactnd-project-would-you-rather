@@ -19,12 +19,13 @@ const CardContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 const BtnContainer = styled.div`
   margin: auto;
   width: 70%;
-  display: flex; 
+  display: flex;
   justify-content: space-between;
 `;
 
@@ -54,7 +55,7 @@ const Option = styled.img`
 
 const H4 = styled.h4`
   margin: 0px 10px 0px 0px;
-  flex-basis: 30%; 
+  flex-basis: 30%;
 `;
 
 //Styling for what the user selects
@@ -81,7 +82,6 @@ class QuestionResultsPage extends Component {
       totalVotes,
       logedInUser
     } = this.props;
-    
 
     //checking what is the loged user to display her option
     let optionOneStyle = null;
@@ -99,12 +99,17 @@ class QuestionResultsPage extends Component {
         <NavBar />
         <CardContainer>
           <FlexColumn
-            css={{ marginRight: `20px`, padding: `15px`, flexBasis: `160px` }}
+            css={{
+              backgroundColor: `#f9f9f9`,
+              padding: `25px`,
+              borderRadius: `5px`,
+              flex: `1 1 160px`
+            }}
           >
             <Avatar src={avatarURL} alt={name} />
             <h3 css={{ marginTop: `10px` }}>{name}</h3>
           </FlexColumn>
-          <FlexColumn css={{ width: `100% ` }}>
+          <FlexColumn css={{ flex: `4 1 200px` }}>
             <Flex css={optionOneStyle}>
               <Option src={optionOneLogo} />
               <H4>{optionOne}</H4>
@@ -112,7 +117,7 @@ class QuestionResultsPage extends Component {
                 value={optionOneVotes}
                 total={totalVotes}
                 progress="percent"
-                precision='1%'
+                precision="1%"
                 css={{ flexBasis: `60%` }}
               >{`${optionOneVotes} out of ${totalVotes}`}</Progress>
             </Flex>
@@ -123,7 +128,7 @@ class QuestionResultsPage extends Component {
                 value={optionTwoVotes}
                 total={totalVotes}
                 progress="percent"
-                precision='1%'
+                precision="1%"
                 css={{ flexBasis: `60%` }}
               >{`${optionTwoVotes} out of ${totalVotes}`}</Progress>
             </Flex>
@@ -136,7 +141,9 @@ class QuestionResultsPage extends Component {
             basic
             onClick={this.handleClick}
           />
-          <div css={{backgroundColor: `lavenderblush`, padding: `10px`}}>{`${logedInUser} selection`}</div>
+          <div
+            css={{ backgroundColor: `lavenderblush`, padding: `10px` }}
+          >{`${logedInUser} selection`}</div>
         </BtnContainer>
       </div>
     );
@@ -153,7 +160,7 @@ function mapStateToProps({ users, questions, authUser }, props) {
   const optionTwoVotes = questions[id].optionTwo.votes.length;
   const totalVotes = optionOneVotes + optionTwoVotes;
   const userAnswer = users[authUser].answers[id];
-  const logedInUser = users[authUser].name
+  const logedInUser = users[authUser].name;
 
   return {
     name,

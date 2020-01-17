@@ -51,11 +51,24 @@ const QuestionCard = props => {
 
   return (
     <CardContainer>
-      <Flex css={{flexBasis: `160px`}}>
+      <Flex
+        css={{
+          flex: `1 1 160px`,
+          backgroundColor: `#f9f9f9`,
+          padding: `25px`,
+          borderRadius: `5px`
+        }}
+      >
         <Avatar src={avatarURL} alt={name} />
         <h4 css={{ margin: `none` }}>{name}</h4>
       </Flex>
-      <Flex css={{ alignItems: `baseline`, flex: `2 1 0`, marginLeft: `20px` }}>
+      <Flex
+        css={{
+          alignItems: `baseline`,
+          flex: `2 1 300px`,
+          margin: `20px 0px 0px 10px`
+        }}
+      >
         <h2 css={{ color: `#e61a8d`, fontStyle: `bold` }}>
           Would you rather...{" "}
         </h2>
