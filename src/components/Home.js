@@ -41,8 +41,6 @@ class Home extends Component {
     });
   };
 
-  let;
-
   render() {
     const { toBeAnswered } = this.state;
     const { answeredId, unansweredId } = this.props.questionsSplit;
@@ -55,7 +53,7 @@ class Home extends Component {
       <QuestionCard id={id} key={id} toBeAnswered={toBeAnswered} />
     ));
 
-    console.log(this.props)
+  
     return (
       <Fragment>
         <NavBar />

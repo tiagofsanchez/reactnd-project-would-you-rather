@@ -114,10 +114,8 @@ class QuestionResultsPage extends Component {
               <Option src={optionOneLogo} />
               <H4>{optionOne}</H4>
               <Progress
-                value={optionOneVotes}
-                total={totalVotes}
+                percent={Math.round(optionOneVotes/totalVotes *100)}
                 progress="percent"
-                precision="1%"
                 css={{ flexBasis: `60%` }}
               >{`${optionOneVotes} out of ${totalVotes}`}</Progress>
             </Flex>
@@ -125,10 +123,8 @@ class QuestionResultsPage extends Component {
               <Option src={optionTwoLogo} />
               <H4>{optionTwo}</H4>
               <Progress
-                value={optionTwoVotes}
-                total={totalVotes}
-                progress="percent"
-                precision="1%"
+                progress='percent'
+                percent={Math.round(optionTwoVotes/totalVotes *100)}
                 css={{ flexBasis: `60%` }}
               >{`${optionTwoVotes} out of ${totalVotes}`}</Progress>
             </Flex>

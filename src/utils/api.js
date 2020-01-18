@@ -19,6 +19,5 @@ export function saveQuestion(question) {
 }
 
 export function saveQuestionAnswer( authUser, qid, answer ) {
-  console.log(`authUSer: ${authUser},id: ${qid}, option: ${answer} `)
   return _saveQuestionAnswer( authUser, qid, answer);
 }

@@ -19,7 +19,6 @@ class App extends Component {
 
   render() {
     const { isLogedIn } = this.props;
-    console.log(isLogedIn);
 
     return (
       <div>

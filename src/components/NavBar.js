@@ -16,7 +16,7 @@ const Nav = styled.nav`
   text-align: center;
   margin: auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 70px;
