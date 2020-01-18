@@ -85,8 +85,6 @@ class Home extends Component {
   }
 }
 
-//TODO: need to sort the questions by timestamp
-
 function mapStateToProps({ authUser, questions, users }) {
   const questionsSplit = userQuestionData(users, authUser, questions);
 
