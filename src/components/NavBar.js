@@ -29,7 +29,7 @@ const Ul = styled.ul`
   display: flex;
   align-items: baseline;
   margin: 10px;
-  margin: none;
+  padding: 0;
 `;
 
 const Li = styled.li`
