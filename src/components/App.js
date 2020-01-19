@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
@@ -9,7 +9,8 @@ import Home from "./Home";
 import NewQuestion from "./NewQuestion";
 import QuestionPage from "./QuestionPage";
 import QuestionResultPage from "./QuestionResultPage";
-import NoMatch from './NoMatch';
+import NoMatch from "./NoMatch";
+import Footer from "./Footer";
 
 class App extends Component {
   componentDidMount() {
@@ -25,18 +26,21 @@ class App extends Component {
         {!isLogedIn ? (
           <Login />
         ) : (
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/add" component={NewQuestion} />
-            <Route exact path="/leaderboard" component={LeaderboardPage} />
-            <Route exact path="/question/:id" component={QuestionPage} />
-            <Route
-              exact
-              path="/question-result/:id"
-              component={QuestionResultPage}
-            />
-            <Route component={NoMatch}/>
-          </Switch>
+          <Fragment>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/add" component={NewQuestion} />
+              <Route exact path="/leaderboard" component={LeaderboardPage} />
+              <Route exact path="/question/:id" component={QuestionPage} />
+              <Route
+                exact
+                path="/question-result/:id"
+                component={QuestionResultPage}
+              />
+              <Route component={NoMatch} />
+            </Switch>
+            <Footer />
+          </Fragment>
         )}
       </div>
     );

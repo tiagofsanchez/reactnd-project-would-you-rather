@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-import { Button } from "semantic-ui-react";
-import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 
-import { logoutAuth } from "../actions/authUser";
+import LoginUserAvatar from "./LoginUserAvatar";
 
 /*STYLE components */
+const Header = styled.div`
+width: 100%;
+position:fixed; 
+top: 0;
+background: white;
+`
+
+
 
 const Nav = styled.nav`
   width: 80%;
@@ -19,7 +24,6 @@ const Nav = styled.nav`
   flex-wrap: wrap-reverse;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 70px;
 `;
 
 const Ul = styled.ul`
@@ -35,14 +39,15 @@ const Li = styled.li`
   text-decoration: none;
   display: flex;
   align-items: center;
+  color: black;
 `;
 
-const Span = styled.span``;
-
-const Avatar = styled.img`
-  height: 20px;
-  margin: 5px;
+const UserLogout = styled.div`
+  @media (max-width: 650px) {
+    display: none;
+  }
 `;
+/*STYLE components */
 
 const activeLink = {
   fontWeight: "bold",
@@ -51,62 +56,51 @@ const activeLink = {
 };
 
 class NavBar extends Component {
-  onLogoutHandler = () => {
-    const { dispatch } = this.props;
-    dispatch(logoutAuth(null));
-    window.location.href = "/";
-  };
-
   render() {
-    const { name, avatarURL } = this.props;
-
     return (
+      <Header>
       <Nav>
         <div>
           <Ul>
             <Li>
-              <NavLink exact to="/" activeStyle={activeLink} css={{color:`black`}}>
+              <NavLink
+                exact
+                to="/"
+                activeStyle={activeLink}
+                css={{ color: `black` }}
+              >
                 Home
               </NavLink>
             </Li>
             <Li>
-              <NavLink exact to="/add" activeStyle={activeLink} css={{color:`black`}}>
+              <NavLink
+                exact
+                to="/add"
+                activeStyle={activeLink}
+                css={{ color: `black` }}
+              >
                 New question
               </NavLink>
             </Li>
             <Li>
-              <NavLink exact to="/leaderboard" activeStyle={activeLink} css={{color:`black`}}>
+              <NavLink
+                exact
+                to="/leaderboard"
+                activeStyle={activeLink}
+                css={{ color: `black` }}
+              >
                 Leaderboard
               </NavLink>
             </Li>
           </Ul>
         </div>
-        <div>
-          <Ul>
-            <Li>
-              Hello, <Avatar alt={name} src={avatarURL} /> <Span>{name}</Span>
-            </Li>
-            <Li>
-              <Button
-                size="mini"
-                content="Logout"
-                color="pink"
-                onClick={this.onLogoutHandler}
-              />
-            </Li>
-          </Ul>
-        </div>
+        <UserLogout>
+          <LoginUserAvatar />
+        </UserLogout>
       </Nav>
+      </Header>
     );
   }
 }
 
-function mapStateToProps({ authUser, users }) {
-  return {
-    authUser,
-    avatarURL: users[authUser].avatarURL,
-    name: users[authUser].name
-  };
-}
-
-export default connect(mapStateToProps)(NavBar);
+export default NavBar;

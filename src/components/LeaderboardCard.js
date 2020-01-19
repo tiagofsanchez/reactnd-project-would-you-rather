@@ -17,6 +17,7 @@ const CardContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap-reverse;
+
 `;
 
 const FlexColumn = styled.div`

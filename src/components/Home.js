@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
-import { Button, ButtonGroup } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
@@ -11,8 +11,9 @@ import QuestionCard from "./QuestionCard";
 
 /* STYLED COMPONENTS */
 const HomeContainer = styled.div`
-  width: 80%;
+  width: 70%;
   margin: auto;
+  margin-top: 70px;
 `;
 
 const Flex = styled.div`
