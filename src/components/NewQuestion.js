@@ -49,6 +49,10 @@ class NewQuestion extends Component {
     onSubmit: false
   };
 
+  componentDidMount() { 
+    window.scrollTo(0,0)
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     const { optionOne, optionTwo } = this.state;

@@ -28,6 +28,12 @@ class Home extends Component {
     toBeAnswered: true
   };
 
+  //scroll component up whenever it is reloaded 
+  componentDidMount() { 
+    window.scrollTo(0,0)
+  }
+
+
   tbAnsweredHandler = () => {
     this.setState({
       toBeAnswered: true

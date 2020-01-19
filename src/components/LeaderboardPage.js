@@ -11,6 +11,7 @@ const Container = styled.div`
 `;
 
 const LeaderboardPage = props => {
+  window.scrollTo(0,0)  
   const { leaderboard, authUser } = props;
   return (
     <div>

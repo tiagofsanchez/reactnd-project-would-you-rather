@@ -44,6 +44,10 @@ class QuestionPage extends Component {
     value: null,
     isAnswered: false
   };
+  
+  componentDidMount() { 
+    window.scrollTo(0,0)
+  }
 
   handleSubmit = e => {
     e.preventDefault();
