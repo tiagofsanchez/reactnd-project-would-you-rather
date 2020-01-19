@@ -4,8 +4,7 @@ import { Progress, Button } from "semantic-ui-react";
 
 import NavBar from "./NavBar";
 
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
+
 import styled from "@emotion/styled";
 
 const CardContainer = styled.div`
@@ -100,7 +99,7 @@ class QuestionResultsPage extends Component {
         <NavBar />
         <CardContainer>
           <FlexColumn
-            css={{
+            stlstyle={{
               backgroundColor: `#f9f9f9`,
               padding: `25px`,
               borderRadius: `5px`,
@@ -108,25 +107,25 @@ class QuestionResultsPage extends Component {
             }}
           >
             <Avatar src={avatarURL} alt={name} />
-            <h3 css={{ marginTop: `10px` }}>{name}</h3>
+            <h3 style={{ marginTop: `10px` }}>{name}</h3>
           </FlexColumn>
-          <FlexColumn css={{ flex: `4 1 200px` }}>
-            <Flex css={optionOneStyle}>
+          <FlexColumn style={{ flex: `4 1 200px` }}>
+            <Flex style={optionOneStyle}>
               <Option src={optionOneLogo} />
               <H4>{optionOne}</H4>
               <Progress
                 percent={Math.round(optionOneVotes/totalVotes *100)}
                 progress="percent"
-                css={{ flexBasis: `60%` }}
+                style={{ flexBasis: `60%` }}
               >{`${optionOneVotes} out of ${totalVotes}`}</Progress>
             </Flex>
-            <Flex css={optionTwoStyle}>
+            <Flex style={optionTwoStyle}>
               <Option src={optionTwoLogo} />
               <H4>{optionTwo}</H4>
               <Progress
                 progress='percent'
                 percent={Math.round(optionTwoVotes/totalVotes *100)}
-                css={{ flexBasis: `60%` }}
+                style={{ flexBasis: `60%` }}
               >{`${optionTwoVotes} out of ${totalVotes}`}</Progress>
             </Flex>
           </FlexColumn>
@@ -139,7 +138,7 @@ class QuestionResultsPage extends Component {
             onClick={this.handleClick}
           />
           <div
-            css={{ backgroundColor: `lavenderblush`, padding: `10px` }}
+            style={{ backgroundColor: `lavenderblush`, padding: `10px` }}
           >{`${logedInUser} selection`}</div>
         </BtnContainer>
       </div>

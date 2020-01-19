@@ -1,6 +1,4 @@
 import React from "react";
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 
 /* STYLED COMPONENT */
@@ -63,10 +61,10 @@ const LeaderboardCard = props => {
   }
 
   return (
-    <CardContainer css={shadeUser}>
-      <Flex css={{ flex: `4 1 360px`, flexWrap: `wrap` }}>
+    <CardContainer style={shadeUser}>
+      <Flex style={{ flex: `4 1 360px`, flexWrap: `wrap` }}>
         <FlexColumn
-          css={{
+          style={{
             flex: `1 1 160px`,
             marginTop: `20px`,
             marginBottom: `20px`,
@@ -76,7 +74,7 @@ const LeaderboardCard = props => {
           <h4>{name}</h4>
         </FlexColumn>
         <FlexColumn
-          css={{
+          style={{
             fontSize: `large`,
             flex: `4 1 200px`,
             alignItems: `flex-start`
@@ -86,7 +84,7 @@ const LeaderboardCard = props => {
           <p>{`Questions answered: ${questionsAnswered}`}</p>
         </FlexColumn>
       </Flex>
-      <Flex css={{ flex: `0 0 50px ` }}>
+      <Flex style={{ flex: `0 0 50px ` }}>
         <Score>
           <p>{score}</p>
         </Score>

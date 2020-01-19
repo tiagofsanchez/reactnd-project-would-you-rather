@@ -3,8 +3,7 @@ import { Form, Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import LoadingBar from "react-redux-loading-bar";
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
+
 import styled from "@emotion/styled";
 
 import { handleSaveQuestion } from "../actions/questions";
@@ -96,7 +95,7 @@ class NewQuestion extends Component {
         />
         <NavBar />
         <NewQuestionContainer>
-          <h2 css={{ marginBottom: `40px`, color: `#e03997` }}>
+          <h2 style={{ marginBottom: `40px`, color: `#e03997` }}>
             Would you rather...
           </h2>
           <Form onSubmit={this.handleSubmit}>

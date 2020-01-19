@@ -2,8 +2,7 @@ import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Button, Form, Radio } from "semantic-ui-react";
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
+
 import styled from "@emotion/styled";
 
 import { handleSaveAnswer } from "../actions/questions";
@@ -83,7 +82,7 @@ class QuestionPage extends Component {
       <Fragment>
         <NavBar />
         <CardContainer>
-          <Flex  css={{
+          <Flex  style={{
               backgroundColor: `#f9f9f9`,
               padding: `25px`,
               borderRadius: `5px`,
@@ -91,14 +90,14 @@ class QuestionPage extends Component {
               marginRight: `15px`
             }}>
             <Avatar src={avatarURL} alt={name} />
-            <h4 css={{ margin: `none` }}>{name}</h4>
+            <h4 style={{ margin: `none` }}>{name}</h4>
           </Flex>
-          <Flex css={{ alignItems: `baseline`, flex: `4 1 300px`, marginTop: `15px`}}>
-            <h2 css={{ color: `#e61a8d`, fontStyle: `bold` }}>
+          <Flex style={{ alignItems: `baseline`, flex: `4 1 300px`, marginTop: `15px`}}>
+            <h2 style={{ color: `#e61a8d`, fontStyle: `bold` }}>
               Would you rather...{" "}
             </h2>
-            <Form css={{ width: `100%` }} onSubmit={this.handleSubmit}>
-              <Form.Field css={{ textAlign: `initial` }}>
+            <Form style={{ width: `100%` }} onSubmit={this.handleSubmit}>
+              <Form.Field style={{ textAlign: `initial` }}>
                 <Radio
                   label={optionOne}
                   name="radioGroup"
@@ -106,7 +105,7 @@ class QuestionPage extends Component {
                   onChange={this.handleChange}
                   checked={value === "optionOne"}
                 />
-                <h4 css={{ margin: `10px 0px 10px 0px` }}>or</h4>
+                <h4 style={{ margin: `10px 0px 10px 0px` }}>or</h4>
                 <Radio
                   label={optionTwo}
                   name="radioGroup"

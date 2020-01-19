@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
+
 import styled from "@emotion/styled";
 
 import LoginUserAvatar from "./LoginUserAvatar";
@@ -22,6 +21,9 @@ const Nav = styled.nav`
   flex-wrap: wrap-reverse;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 650px) { 
+    width: 90%;
+  }
 `;
 
 const Ul = styled.ul`
@@ -66,7 +68,7 @@ class NavBar extends Component {
                 exact
                 to="/"
                 activeStyle={activeLink}
-                css={{ color: `black` }}
+                style={{ color: `black` }}
               >
                 Home
               </NavLink>
@@ -76,7 +78,7 @@ class NavBar extends Component {
                 exact
                 to="/add"
                 activeStyle={activeLink}
-                css={{ color: `black` }}
+                style={{ color: `black` }}
               >
                 New question
               </NavLink>
@@ -86,7 +88,7 @@ class NavBar extends Component {
                 exact
                 to="/leaderboard"
                 activeStyle={activeLink}
-                css={{ color: `black` }}
+                style={{ color: `black` }}
               >
                 Leaderboard
               </NavLink>

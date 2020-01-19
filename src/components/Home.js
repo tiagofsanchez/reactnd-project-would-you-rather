@@ -1,8 +1,7 @@
 import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
+
 import styled from "@emotion/styled";
 
 import { userQuestionData } from "../utils/helper";
@@ -14,15 +13,14 @@ const HomeContainer = styled.div`
   width: 70%;
   margin: auto;
   margin-top: 120px;
+  @media (max-width: 650px) {
+    width: 90%;
+  }
 `;
 
 const Flex = styled.div`
   display: flex;
   margin-bottom: 40px;
-`;
-
-const Img = styled.img`
-  height: 20px;
 `;
 
 class Home extends Component {
@@ -54,7 +52,6 @@ class Home extends Component {
       <QuestionCard id={id} key={id} toBeAnswered={toBeAnswered} />
     ));
 
-  
     return (
       <Fragment>
         <NavBar />
@@ -92,7 +89,7 @@ function mapStateToProps({ authUser, questions, users }) {
   return {
     authUser,
     questions,
-    questionsSplit,
+    questionsSplit
   };
 }
 

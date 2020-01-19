@@ -1,6 +1,4 @@
 import React from "react";
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 
 import LoginUserAvatar from "./LoginUserAvatar";
@@ -11,7 +9,6 @@ const FooterDiv = styled.footer`
   bottom: 0;
   padding: 10px;
   background: white;
-  
 `;
 
 const Container = styled.div`
@@ -21,6 +18,9 @@ const Container = styled.div`
   align-items: center;
   text-align: center;
   justify-content: space-between;
+  @media (max-width: 650px) {
+    width: 90%;
+  }
 `;
 const UserLogOut = styled.div`
   display: none;
@@ -36,7 +36,9 @@ const Footer = () => {
         <UserLogOut>
           <LoginUserAvatar />
         </UserLogOut>
-        <p css={{ textAlign: `center`, alignSelf: `center` }}>Made by Tiago</p>
+        <p style={{ textAlign: `center`, alignSelf: `center` }}>
+          Made by Tiago
+        </p>
       </Container>
     </FooterDiv>
   );
