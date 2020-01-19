@@ -19,7 +19,7 @@ const CardContainer = styled.div`
   border-radius: 4px;
   text-align: center;
   margin-bottom: 10px;
-  margin-top: 70px;
+  margin-top: 120px;
   display: flex;
   align-items: center;
   justify-content: flex-start;

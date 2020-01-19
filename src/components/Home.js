@@ -13,7 +13,7 @@ import QuestionCard from "./QuestionCard";
 const HomeContainer = styled.div`
   width: 70%;
   margin: auto;
-  margin-top: 70px;
+  margin-top: 120px;
 `;
 
 const Flex = styled.div`

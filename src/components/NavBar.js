@@ -14,8 +14,6 @@ top: 0;
 background: white;
 `
 
-
-
 const Nav = styled.nav`
   width: 80%;
   text-align: center;
@@ -29,8 +27,9 @@ const Nav = styled.nav`
 const Ul = styled.ul`
   text-decoration: none;
   display: flex;
-  align-items: center;
-  padding: 0;
+  align-items: baseline;
+  margin: 10px;
+  margin: none;
 `;
 
 const Li = styled.li`
@@ -60,7 +59,7 @@ class NavBar extends Component {
     return (
       <Header>
       <Nav>
-        <div>
+       
           <Ul>
             <Li>
               <NavLink
@@ -93,7 +92,7 @@ class NavBar extends Component {
               </NavLink>
             </Li>
           </Ul>
-        </div>
+      
         <UserLogout>
           <LoginUserAvatar />
         </UserLogout>

@@ -36,7 +36,7 @@ const Footer = () => {
         <UserLogOut>
           <LoginUserAvatar />
         </UserLogOut>
-        <p css={{ textAlign: `center`, alignSelf: `center` }}>Made by TFS</p>
+        <p css={{ textAlign: `center`, alignSelf: `center` }}>Made by Tiago</p>
       </Container>
     </FooterDiv>
   );

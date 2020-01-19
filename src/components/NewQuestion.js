@@ -15,7 +15,7 @@ import NavBar from "./NavBar";
 const NewQuestionContainer = styled.div`
   width: 70%;
   margin: auto;
-  margin-top: 70px;
+  margin-top: 120px;
   border: solid #e03997 1px;
   padding: 30px 20px 40px 20px;
   border-radius: 4px;

@@ -7,7 +7,7 @@ import NavBar from "./NavBar";
 import LeaderboardCard from "./LeaderboardCard";
 
 const Container = styled.div`
-  margin-top: 70px;
+  margin-top: 120px;
 `;
 
 const LeaderboardPage = props => {
