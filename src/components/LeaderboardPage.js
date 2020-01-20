@@ -7,11 +7,12 @@ import NavBar from "./NavBar";
 import LeaderboardCard from "./LeaderboardCard";
 
 const Container = styled.div`
-  margin-top: 120px;
+  padding-top: 120px;
+  padding-bottom: 40px;
 `;
 
 const LeaderboardPage = props => {
-  window.scrollTo(0,0)  
+  window.scrollTo(0, 0);
   const { leaderboard, authUser } = props;
   return (
     <div>

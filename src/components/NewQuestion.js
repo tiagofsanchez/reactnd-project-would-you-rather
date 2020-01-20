@@ -11,10 +11,15 @@ import NavBar from "./NavBar";
 
 /* STYLED COMPONENTS */
 
+const PageContainer = styled.div`
+  padding-top: 100px;
+`;
+
 const NewQuestionContainer = styled.div`
   width: 70%;
   margin: auto;
-  margin-top: 120px;
+  padding-top: 120px;
+  padding-bottom: 90px;
   border: solid #e03997 1px;
   padding: 30px 20px 40px 20px;
   border-radius: 4px;
@@ -49,8 +54,8 @@ class NewQuestion extends Component {
     onSubmit: false
   };
 
-  componentDidMount() { 
-    window.scrollTo(0,0)
+  componentDidMount() {
+    window.scrollTo(0, 0);
   }
 
   handleSubmit = e => {
@@ -92,42 +97,44 @@ class NewQuestion extends Component {
     return (
       <Fragment>
         <LoadingBar
-          style={{ backgroundColor: "#e03997" , zIndex:`1000` }}
+          style={{ backgroundColor: "#e03997", zIndex: `1000` }}
           updateTime={10}
           maxProgress={95}
           progressIncrease={10}
         />
         <NavBar />
-        <NewQuestionContainer>
-          <h2 style={{ marginBottom: `40px`, color: `#e03997` }}>
-            Would you rather...
-          </h2>
-          <Form onSubmit={this.handleSubmit}>
-            <Container>
-              <Input
-                value={optionOne}
-                name="optionOne"
-                placeholder="Your first option... "
-                fluid
-                onChange={this.handleChange}
-              />
-              <Or>OR</Or>
-              <Input
-                value={optionTwo}
-                name="optionTwo"
-                placeholder="Your second option... "
-                fluid
-                onChange={this.handleChange}
-              />
-              <Button
-                fluid
-                content="Add new question"
-                type="submit"
-                disabled={isBtnDisabled}
-              />
-            </Container>
-          </Form>
-        </NewQuestionContainer>
+        <PageContainer>
+          <NewQuestionContainer>
+            <h2 style={{ marginBottom: `40px`, color: `#e03997` }}>
+              Would you rather...
+            </h2>
+            <Form onSubmit={this.handleSubmit}>
+              <Container>
+                <Input
+                  value={optionOne}
+                  name="optionOne"
+                  placeholder="Your first option... "
+                  fluid
+                  onChange={this.handleChange}
+                />
+                <Or>OR</Or>
+                <Input
+                  value={optionTwo}
+                  name="optionTwo"
+                  placeholder="Your second option... "
+                  fluid
+                  onChange={this.handleChange}
+                />
+                <Button
+                  fluid
+                  content="Add new question"
+                  type="submit"
+                  disabled={isBtnDisabled}
+                />
+              </Container>
+            </Form>
+          </NewQuestionContainer>
+        </PageContainer>
       </Fragment>
     );
   }

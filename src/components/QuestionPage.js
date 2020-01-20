@@ -10,6 +10,10 @@ import NavBar from "./NavBar";
 
 /* STYLED COMPONENT */
 
+const PageContainer = styled.div`
+  padding-top: 120px;
+`;
+
 const CardContainer = styled.div`
   width: 70%;
   margin: auto;
@@ -18,7 +22,6 @@ const CardContainer = styled.div`
   border-radius: 4px;
   text-align: center;
   margin-bottom: 10px;
-  margin-top: 120px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -44,9 +47,9 @@ class QuestionPage extends Component {
     value: null,
     isAnswered: false
   };
-  
-  componentDidMount() { 
-    window.scrollTo(0,0)
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
   }
 
   handleSubmit = e => {
@@ -55,9 +58,9 @@ class QuestionPage extends Component {
     const { value } = this.state;
     handleSaveAnswer(authUser, id, value);
     this.setState(prevState => ({
-      ...prevState, 
-      isAnswered: true,
-    }))
+      ...prevState,
+      isAnswered: true
+    }));
   };
 
   handleChange = (e, { value }) => {
@@ -71,10 +74,10 @@ class QuestionPage extends Component {
 
   render() {
     const { name, avatarURL, optionOne, optionTwo, id } = this.props;
-    const { value , isAnswered} = this.state;
-    
-    if (isAnswered) { 
-      return <Redirect to={`/question-result/${id}`} />
+    const { value, isAnswered } = this.state;
+
+    if (isAnswered) {
+      return <Redirect to={`/question-result/${id}`} />;
     }
 
     let btnDisabled = true;
@@ -85,49 +88,59 @@ class QuestionPage extends Component {
     return (
       <Fragment>
         <NavBar />
-        <CardContainer>
-          <Flex  style={{
-              backgroundColor: `#f9f9f9`,
-              padding: `25px`,
-              borderRadius: `5px`,
-              flex: `1 1 160px`, 
-              marginRight: `15px`
-            }}>
-            <Avatar src={avatarURL} alt={name} />
-            <h4 style={{ margin: `none` }}>{name}</h4>
-          </Flex>
-          <Flex style={{ alignItems: `baseline`, flex: `4 1 300px`, marginTop: `15px`}}>
-            <h2 style={{ color: `#e61a8d`, fontStyle: `bold` }}>
-              Would you rather...{" "}
-            </h2>
-            <Form style={{ width: `100%` }} onSubmit={this.handleSubmit}>
-              <Form.Field style={{ textAlign: `initial` }}>
-                <Radio
-                  label={optionOne}
-                  name="radioGroup"
-                  value="optionOne"
-                  onChange={this.handleChange}
-                  checked={value === "optionOne"}
+        <PageContainer>
+          <CardContainer>
+            <Flex
+              style={{
+                backgroundColor: `#f9f9f9`,
+                padding: `25px`,
+                borderRadius: `5px`,
+                flex: `1 1 160px`,
+                marginRight: `15px`
+              }}
+            >
+              <Avatar src={avatarURL} alt={name} />
+              <h4 style={{ margin: `none` }}>{name}</h4>
+            </Flex>
+            <Flex
+              style={{
+                alignItems: `baseline`,
+                flex: `4 1 300px`,
+                marginTop: `15px`
+              }}
+            >
+              <h2 style={{ color: `#e61a8d`, fontStyle: `bold` }}>
+                Would you rather...{" "}
+              </h2>
+              <Form style={{ width: `100%` }} onSubmit={this.handleSubmit}>
+                <Form.Field style={{ textAlign: `initial` }}>
+                  <Radio
+                    label={optionOne}
+                    name="radioGroup"
+                    value="optionOne"
+                    onChange={this.handleChange}
+                    checked={value === "optionOne"}
+                  />
+                  <h4 style={{ margin: `10px 0px 10px 0px` }}>or</h4>
+                  <Radio
+                    label={optionTwo}
+                    name="radioGroup"
+                    value="optionTwo"
+                    onChange={this.handleChange}
+                    checked={value === "optionTwo"}
+                  />
+                </Form.Field>
+                <Button
+                  content="Submit"
+                  color="pink"
+                  floated="right"
+                  type="submit"
+                  disabled={btnDisabled}
                 />
-                <h4 style={{ margin: `10px 0px 10px 0px` }}>or</h4>
-                <Radio
-                  label={optionTwo}
-                  name="radioGroup"
-                  value="optionTwo"
-                  onChange={this.handleChange}
-                  checked={value === "optionTwo"}
-                />
-              </Form.Field>
-              <Button
-                content="Submit"
-                color='pink'
-                floated='right'
-                type="submit"
-                disabled={btnDisabled}
-              />
-            </Form>
-          </Flex>
-        </CardContainer>
+              </Form>
+            </Flex>
+          </CardContainer>
+        </PageContainer>
         <BtnContainer>
           <Button
             content="Back"

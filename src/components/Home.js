@@ -12,7 +12,8 @@ import QuestionCard from "./QuestionCard";
 const HomeContainer = styled.div`
   width: 70%;
   margin: auto;
-  margin-top: 120px;
+  padding-top: 120px;
+  padding-bottom: 40px;
   @media (max-width: 650px) {
     width: 90%;
   }

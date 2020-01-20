@@ -4,8 +4,11 @@ import { Progress, Button } from "semantic-ui-react";
 
 import NavBar from "./NavBar";
 
-
 import styled from "@emotion/styled";
+
+const PageContainer = styled.div`
+  padding-top: 120px;
+`;
 
 const CardContainer = styled.div`
   margin: auto;
@@ -15,7 +18,6 @@ const CardContainer = styled.div`
   border-radius: 4px;
   text-align: center;
   margin-bottom: 10px;
-  margin-top: 120px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -97,39 +99,41 @@ class QuestionResultsPage extends Component {
     return (
       <div>
         <NavBar />
-        <CardContainer>
-          <FlexColumn
-            stlstyle={{
-              backgroundColor: `#f9f9f9`,
-              padding: `25px`,
-              borderRadius: `5px`,
-              flex: `1 1 160px`
-            }}
-          >
-            <Avatar src={avatarURL} alt={name} />
-            <h3 style={{ marginTop: `10px` }}>{name}</h3>
-          </FlexColumn>
-          <FlexColumn style={{ flex: `4 1 200px` }}>
-            <Flex style={optionOneStyle}>
-              <Option src={optionOneLogo} />
-              <H4>{optionOne}</H4>
-              <Progress
-                percent={Math.round(optionOneVotes/totalVotes *100)}
-                progress="percent"
-                style={{ flexBasis: `60%` }}
-              >{`${optionOneVotes} out of ${totalVotes}`}</Progress>
-            </Flex>
-            <Flex style={optionTwoStyle}>
-              <Option src={optionTwoLogo} />
-              <H4>{optionTwo}</H4>
-              <Progress
-                progress='percent'
-                percent={Math.round(optionTwoVotes/totalVotes *100)}
-                style={{ flexBasis: `60%` }}
-              >{`${optionTwoVotes} out of ${totalVotes}`}</Progress>
-            </Flex>
-          </FlexColumn>
-        </CardContainer>
+        <PageContainer>
+          <CardContainer>
+            <FlexColumn
+              stlstyle={{
+                backgroundColor: `#f9f9f9`,
+                padding: `25px`,
+                borderRadius: `5px`,
+                flex: `1 1 160px`
+              }}
+            >
+              <Avatar src={avatarURL} alt={name} />
+              <h3 style={{ marginTop: `10px` }}>{name}</h3>
+            </FlexColumn>
+            <FlexColumn style={{ flex: `4 1 200px` }}>
+              <Flex style={optionOneStyle}>
+                <Option src={optionOneLogo} />
+                <H4>{optionOne}</H4>
+                <Progress
+                  percent={Math.round((optionOneVotes / totalVotes) * 100)}
+                  progress="percent"
+                  style={{ flexBasis: `60%` }}
+                >{`${optionOneVotes} out of ${totalVotes}`}</Progress>
+              </Flex>
+              <Flex style={optionTwoStyle}>
+                <Option src={optionTwoLogo} />
+                <H4>{optionTwo}</H4>
+                <Progress
+                  progress="percent"
+                  percent={Math.round((optionTwoVotes / totalVotes) * 100)}
+                  style={{ flexBasis: `60%` }}
+                >{`${optionTwoVotes} out of ${totalVotes}`}</Progress>
+              </Flex>
+            </FlexColumn>
+          </CardContainer>
+        </PageContainer>
         <BtnContainer>
           <Button
             content="Back"
