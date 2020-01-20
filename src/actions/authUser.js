@@ -8,9 +8,4 @@ export function receivedAuth(id) {
   };
 }
 
-export function logoutAuth(id) {
-  return {
-    type: LOGOUT,
-    id
-  };
-}
+

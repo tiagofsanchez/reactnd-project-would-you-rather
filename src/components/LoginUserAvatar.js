@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styled from "@emotion/styled";
 import { Button } from "semantic-ui-react";
 
-import { logoutAuth } from "../actions/authUser";
+import { receivedAuth } from "../actions/authUser";
 
 const Ul = styled.ul`
   text-decoration: none;
@@ -27,10 +27,10 @@ const Avatar = styled.img`
 `;
 
 class LoginUserAvatar extends Component {
-  onLogoutHandler = () => {
+  onLogoutHandler = (e) => {
+    e.preventDefault();
     const { dispatch } = this.props;
-    dispatch(logoutAuth(null));
-    window.location.href = "/";
+    dispatch(receivedAuth(null));
   };
 
   render() {

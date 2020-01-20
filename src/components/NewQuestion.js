@@ -92,7 +92,7 @@ class NewQuestion extends Component {
     return (
       <Fragment>
         <LoadingBar
-          style={{ backgroundColor: "#e03997" }}
+          style={{ backgroundColor: "#e03997" , zIndex:`1000` }}
           updateTime={10}
           maxProgress={95}
           progressIncrease={10}
