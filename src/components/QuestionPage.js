@@ -7,6 +7,7 @@ import styled from "@emotion/styled";
 
 import { handleSaveAnswer } from "../actions/questions";
 import NavBar from "./NavBar";
+import NoMatch from "./NoMatch";
 
 /* STYLED COMPONENT */
 
@@ -48,12 +49,10 @@ class QuestionPage extends Component {
     isAnswered: false
   };
 
- 
   componentDidMount() {
-    const { question } = this.props
+    const { question } = this.props;
     window.scrollTo(0, 0);
-    console.log(question)
-  
+    console.log(question);
   }
 
   handleSubmit = e => {
@@ -77,7 +76,7 @@ class QuestionPage extends Component {
   };
 
   render() {
-    const { name, avatarURL, optionOne, optionTwo, id } = this.props;
+    const { name, avatarURL, optionOne, optionTwo, id, isIdTrue } = this.props;
     const { value, isAnswered } = this.state;
 
     if (isAnswered) {
@@ -92,67 +91,73 @@ class QuestionPage extends Component {
     return (
       <Fragment>
         <NavBar />
-        <PageContainer>
-          <CardContainer>
-            <Flex
-              style={{
-                backgroundColor: `#f9f9f9`,
-                padding: `25px`,
-                borderRadius: `5px`,
-                flex: `1 1 160px`,
-                marginRight: `15px`
-              }}
-            >
-              <Avatar src={avatarURL} alt={name} />
-              <h4 style={{ margin: `none` }}>{name}</h4>
-            </Flex>
-            <Flex
-              style={{
-                alignItems: `baseline`,
-                flex: `4 1 300px`,
-                marginTop: `15px`
-              }}
-            >
-              <h2 style={{ color: `#e61a8d`, fontStyle: `bold` }}>
-                Would you rather...{" "}
-              </h2>
-              <Form style={{ width: `100%` }} onSubmit={this.handleSubmit}>
-                <Form.Field style={{ textAlign: `initial` }}>
-                  <Radio
-                    label={optionOne}
-                    name="radioGroup"
-                    value="optionOne"
-                    onChange={this.handleChange}
-                    checked={value === "optionOne"}
-                  />
-                  <h4 style={{ margin: `10px 0px 10px 0px` }}>or</h4>
-                  <Radio
-                    label={optionTwo}
-                    name="radioGroup"
-                    value="optionTwo"
-                    onChange={this.handleChange}
-                    checked={value === "optionTwo"}
-                  />
-                </Form.Field>
-                <Button
-                  content="Submit"
-                  color="pink"
-                  floated="right"
-                  type="submit"
-                  disabled={btnDisabled}
-                />
-              </Form>
-            </Flex>
-          </CardContainer>
-        </PageContainer>
-        <BtnContainer>
-          <Button
-            content="Back"
-            basic
-            color="pink"
-            onClick={this.handleClick}
-          />
-        </BtnContainer>
+        {isIdTrue ? (
+          <Fragment>
+            <PageContainer>
+              <CardContainer>
+                <Flex
+                  style={{
+                    backgroundColor: `#f9f9f9`,
+                    padding: `25px`,
+                    borderRadius: `5px`,
+                    flex: `1 1 160px`,
+                    marginRight: `15px`
+                  }}
+                >
+                  <Avatar src={avatarURL} alt={name} />
+                  <h4 style={{ margin: `none` }}>{name}</h4>
+                </Flex>
+                <Flex
+                  style={{
+                    alignItems: `baseline`,
+                    flex: `4 1 300px`,
+                    marginTop: `15px`
+                  }}
+                >
+                  <h2 style={{ color: `#e61a8d`, fontStyle: `bold` }}>
+                    Would you rather...{" "}
+                  </h2>
+                  <Form style={{ width: `100%` }} onSubmit={this.handleSubmit}>
+                    <Form.Field style={{ textAlign: `initial` }}>
+                      <Radio
+                        label={optionOne}
+                        name="radioGroup"
+                        value="optionOne"
+                        onChange={this.handleChange}
+                        checked={value === "optionOne"}
+                      />
+                      <h4 style={{ margin: `10px 0px 10px 0px` }}>or</h4>
+                      <Radio
+                        label={optionTwo}
+                        name="radioGroup"
+                        value="optionTwo"
+                        onChange={this.handleChange}
+                        checked={value === "optionTwo"}
+                      />
+                    </Form.Field>
+                    <Button
+                      content="Submit"
+                      color="pink"
+                      floated="right"
+                      type="submit"
+                      disabled={btnDisabled}
+                    />
+                  </Form>
+                </Flex>
+              </CardContainer>
+            </PageContainer>
+            <BtnContainer>
+              <Button
+                content="Back"
+                basic
+                color="pink"
+                onClick={this.handleClick}
+              />
+            </BtnContainer>
+          </Fragment>
+        ) : (
+          <NoMatch />
+        )}
       </Fragment>
     );
   }
@@ -160,11 +165,16 @@ class QuestionPage extends Component {
 
 function mapStateToProps({ questions, users, authUser }, props) {
   const id = props.match.params.id;
-  const question = questions[id];
-  const avatarURL = users[question.author].avatarURL;
-  const name = users[question.author].name;
-  const optionOne = question.optionOne.text;
-  const optionTwo = question.optionTwo.text;
+  let { question, avatarURL, name, optionOne, optionTwo } = "";
+
+  const isIdTrue = id in questions;
+  if (isIdTrue === true) {
+    question = questions[id];
+    avatarURL = users[question.author].avatarURL;
+    name = users[question.author].name;
+    optionOne = question.optionOne.text;
+    optionTwo = question.optionTwo.text;
+  }
 
   return {
     id,
@@ -174,7 +184,8 @@ function mapStateToProps({ questions, users, authUser }, props) {
     optionOne,
     optionTwo,
     questions,
-    authUser
+    authUser,
+    isIdTrue
   };
 }
 

@@ -50,7 +50,6 @@ class Login extends React.Component {
     } else {
       history.push(window.location.pathname);
     }
-    
   };   
 
   render() {

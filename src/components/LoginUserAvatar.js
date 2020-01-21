@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "@emotion/styled";
 import { Button } from "semantic-ui-react";
@@ -27,14 +27,12 @@ const Avatar = styled.img`
 `;
 
 class LoginUserAvatar extends Component {
-  
-  onLogoutHandler = (e) => {
+  onLogoutHandler = (e, history) => {
     e.preventDefault();
     const { dispatch } = this.props;
+    console.log(history.location);
     dispatch(receivedAuth(null));
-    // history.push("/")
   };
-
 
   render() {
     const { name, avatarURL } = this.props;
@@ -58,9 +56,10 @@ class LoginUserAvatar extends Component {
 }
 
 function mapStateToProps({ authUser, users }) {
+
   return {
     name: users[authUser].name,
-    avatarURL: users[authUser].avatarURL
+    avatarURL: users[authUser].avatarURL,
   };
 }
 

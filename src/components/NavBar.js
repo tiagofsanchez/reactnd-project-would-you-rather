@@ -58,10 +58,10 @@ const activeLink = {
 
 class NavBar extends Component {
   render() {
+    console.log(this.props)
     return (
       <Header>
       <Nav>
-       
           <Ul>
             <Li>
               <NavLink
@@ -96,7 +96,7 @@ class NavBar extends Component {
           </Ul>
       
         <UserLogout>
-          <LoginUserAvatar />
+          <LoginUserAvatar history={this.props.history} />
         </UserLogout>
       </Nav>
       </Header>
