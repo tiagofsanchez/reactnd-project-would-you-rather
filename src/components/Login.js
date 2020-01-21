@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { Dropdown, Button, Form } from "semantic-ui-react";
 
-/** @jsx jsx */
-import { jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 
 import { userOptions } from "../utils/helper";
@@ -30,7 +28,8 @@ const LoginContainer = styled.div`
 
 class Login extends React.Component {
   state = {
-    userId: ""
+    userId: "",
+    logedin: false
   };
 
   handleUserChange = (e, data) => {
@@ -42,11 +41,17 @@ class Login extends React.Component {
 
   onSubmitHandler = e => {
     e.preventDefault();
-    const { dispatch } = this.props;
+    const { dispatch, history } = this.props;
     const { userId } = this.state;
     dispatch(receivedAuth(userId));
-    this.setState({ userId: "" });
-  };
+    this.setState({ userId: "", logedin: true });
+    if (window.location.pathname === "/") {
+      history.push("/home")
+    } else {
+      history.push(window.location.pathname);
+    }
+    
+  };   
 
   render() {
     const { userId } = this.state;
@@ -64,8 +69,8 @@ class Login extends React.Component {
 
     return (
       <LoginContainer>
-        <h1 css={{ color: `white` }}>Welcome to WOULD YOU RATHER app</h1>
-        <div css={{ textAlign: `center`, display: `block` }}>
+        <h1 style={{ color: `white` }}>Welcome to WOULD YOU RATHER app</h1>
+        <div style={{ textAlign: `center`, display: `block` }}>
           <img
             src="https://image.flaticon.com/icons/svg/2353/2353678.svg"
             alt="would you rather logo"
@@ -81,7 +86,7 @@ class Login extends React.Component {
             options={userOptions}
             loading={isLoading}
             onChange={this.handleUserChange}
-            css={{ marginBottom: `20px` }}
+            style={{ marginBottom: `20px` }}
           />
           <Button fluid content="ENTER" disabled={btnDisable} type="submit" />
         </Form>

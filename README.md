@@ -119,8 +119,6 @@ export default combineReducers({
 
 The loadingBar is keeping tabs with the needed information for me to render the loadingBar properly. 
 
-## Other different things that I used 
 
-To b
 
 

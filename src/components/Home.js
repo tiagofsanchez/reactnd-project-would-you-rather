@@ -61,7 +61,7 @@ class Home extends Component {
 
     return (
       <Fragment>
-        <NavBar />
+        <NavBar history={this.props.history}/>
         <HomeContainer>
           <Flex>
             <Button.Group fluid>

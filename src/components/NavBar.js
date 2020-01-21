@@ -66,7 +66,7 @@ class NavBar extends Component {
             <Li>
               <NavLink
                 exact
-                to="/"
+                to="/home"
                 activeStyle={activeLink}
                 style={{ color: `black` }}
               >

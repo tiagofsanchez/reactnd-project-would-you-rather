@@ -48,8 +48,12 @@ class QuestionPage extends Component {
     isAnswered: false
   };
 
+ 
   componentDidMount() {
+    const { question } = this.props
     window.scrollTo(0, 0);
+    console.log(question)
+  
   }
 
   handleSubmit = e => {
