@@ -27,11 +27,11 @@ const Avatar = styled.img`
 `;
 
 class LoginUserAvatar extends Component {
-  onLogoutHandler = (e, history) => {
+  onLogoutHandler = (e) => {
     e.preventDefault();
-    const { dispatch } = this.props;
-    console.log(history.location);
+    const { dispatch , history } = this.props;
     dispatch(receivedAuth(null));
+    history.push("/")
   };
 
   render() {

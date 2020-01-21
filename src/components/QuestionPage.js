@@ -90,7 +90,7 @@ class QuestionPage extends Component {
 
     return (
       <Fragment>
-        <NavBar />
+        <NavBar history={this.props.history}/>
         {isIdTrue ? (
           <Fragment>
             <PageContainer>

@@ -102,7 +102,7 @@ class NewQuestion extends Component {
           maxProgress={95}
           progressIncrease={10}
         />
-        <NavBar />
+        <NavBar history={this.props.history} />
         <PageContainer>
           <NewQuestionContainer>
             <h2 style={{ marginBottom: `40px`, color: `#e03997` }}>

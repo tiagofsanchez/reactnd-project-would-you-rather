@@ -101,7 +101,7 @@ class QuestionResultsPage extends Component {
 
     return (
       <div>
-        <NavBar />
+        <NavBar history={this.props.history}/>
         {isIdTrue ? (
           <Fragment>
             <PageContainer>

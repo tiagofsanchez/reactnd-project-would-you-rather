@@ -16,7 +16,7 @@ const LeaderboardPage = props => {
   const { leaderboard, authUser } = props;
   return (
     <div>
-      <NavBar />
+      <NavBar history={props.history} />
       <Container>
         {leaderboard.map(user => {
           return (
