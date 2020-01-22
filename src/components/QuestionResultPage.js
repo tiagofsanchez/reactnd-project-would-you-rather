@@ -159,8 +159,8 @@ class QuestionResultsPage extends Component {
   }
 }
 
-function mapStateToProps({ users, questions, authUser }, props) {
-  const id = props.match.params.id;
+function mapStateToProps({ users, questions, authUser }, {id}) {
+ 
   const isIdTrue = id in questions;
   let {
     name,

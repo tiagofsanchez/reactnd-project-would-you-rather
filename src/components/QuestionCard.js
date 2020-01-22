@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
 const CardContainer = styled.div`
@@ -28,56 +28,68 @@ const Avatar = styled.img`
   height: 80px;
 `;
 
-const QuestionCard = props => {
-  const { name, avatarURL, questionTeaser, toBeAnswered, id } = props;
-  //   console.log(props);
+class QuestionCard extends Component {
+  handleClick = () => {};
 
-  const button = toBeAnswered ? (
-    <Link to={`/question/${id}`} style={{ width: `100%` }}>
-      <Button floated='right' basic color='pink' >
-        Answer
-      </Button>
-    </Link>
-  ) : (
-    <Link to={`/question-result/${id}`} style={{ width: `100%` }}>
-      <Button floated='right' basic color='pink'>
-        Check results
-      </Button>
-    </Link>
-  );
+  render() {
+    const { name, avatarURL, questionTeaser, toBeAnswered, id } = this.props;
 
-  return (
-    <CardContainer>
-      <Flex
-        style={{
-          flex: `1 1 160px`,
-          backgroundColor: `#f9f9f9`,
-          padding: `25px`,
-          borderRadius: `5px`
-        }}
+    const button = toBeAnswered ? (
+      <Link
+        to={{ pathname: `/question/${id}`, state: { showResponse: false } }}
+        style={{ width: `100%` }}
       >
-        <Avatar src={avatarURL} alt={name} />
-        <h4 style={{ margin: `none` }}>{name}</h4>
-      </Flex>
-      <Flex
-        style={{
-          alignItems: `baseline`,
-          flex: `2 1 300px`,
-          margin: `20px 0px 0px 10px`
+        <Button floated="right" basic color="pink">
+          Answer
+        </Button>
+      </Link>
+    ) : (
+      <Link
+        to={{
+          pathname: `/question/${id}`,
+          state: { showResponse: true }
         }}
+        style={{ width: `100%` }}
       >
-        <h2 style={{ color: `#e61a8d`, fontStyle: `bold` }}>
-          Would you rather...{" "}
-        </h2>
-        <p style={{ margin: `0px` }}>{questionTeaser}</p>
-        <h4 style={{ margin: `0px` }}>or</h4>
-        <p style={{ margin: `0px` }}>...</p>
-        <br />
-        {button}
-      </Flex>
-    </CardContainer>
-  );
-};
+        <Button floated="right" basic color="pink">
+          Check results
+        </Button>
+      </Link>
+    );
+
+    return (
+      <CardContainer>
+        <Flex
+          style={{
+            flex: `1 1 160px`,
+            backgroundColor: `#f9f9f9`,
+            padding: `25px`,
+            borderRadius: `5px`
+          }}
+        >
+          <Avatar src={avatarURL} alt={name} />
+          <h4 style={{ margin: `none` }}>{name}</h4>
+        </Flex>
+        <Flex
+          style={{
+            alignItems: `baseline`,
+            flex: `2 1 300px`,
+            margin: `20px 0px 0px 10px`
+          }}
+        >
+          <h2 style={{ color: `#e61a8d`, fontStyle: `bold` }}>
+            Would you rather...{" "}
+          </h2>
+          <p style={{ margin: `0px` }}>{questionTeaser}</p>
+          <h4 style={{ margin: `0px` }}>or</h4>
+          <p style={{ margin: `0px` }}>...</p>
+          <br />
+          {button}
+        </Flex>
+      </CardContainer>
+    );
+  }
+}
 
 function mapStateToProps({ users, questions }, { id }) {
   const question = questions[id];

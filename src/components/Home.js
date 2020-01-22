@@ -26,7 +26,7 @@ const Flex = styled.div`
 
 class Home extends Component {
   state = {
-    toBeAnswered: true
+    toBeAnswered: true,
   };
 
   //scroll component up whenever it is reloaded 
@@ -43,7 +43,7 @@ class Home extends Component {
 
   answeredHandler = () => {
     this.setState({
-      toBeAnswered: false
+      toBeAnswered: false,
     });
   };
 

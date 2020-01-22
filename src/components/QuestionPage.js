@@ -1,6 +1,5 @@
 import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import { Button, Form, Radio } from "semantic-ui-react";
 
 import styled from "@emotion/styled";
@@ -8,6 +7,7 @@ import styled from "@emotion/styled";
 import { handleSaveAnswer } from "../actions/questions";
 import NavBar from "./NavBar";
 import NoMatch from "./NoMatch";
+import QuestionResultPage from "./QuestionResultPage";
 
 /* STYLED COMPONENT */
 
@@ -45,14 +45,12 @@ const Avatar = styled.img`
 
 class QuestionPage extends Component {
   state = {
-    value: null,
-    isAnswered: false
+    value: null
   };
 
   componentDidMount() {
-    const { question } = this.props;
     window.scrollTo(0, 0);
-    console.log(question);
+    console.log(this.state);
   }
 
   handleSubmit = e => {
@@ -62,7 +60,7 @@ class QuestionPage extends Component {
     handleSaveAnswer(authUser, id, value);
     this.setState(prevState => ({
       ...prevState,
-      isAnswered: true
+      showResult: true
     }));
   };
 
@@ -76,12 +74,17 @@ class QuestionPage extends Component {
   };
 
   render() {
-    const { name, avatarURL, optionOne, optionTwo, id, isIdTrue } = this.props;
-    const { value, isAnswered } = this.state;
-
-    if (isAnswered) {
-      return <Redirect to={`/question-result/${id}`} />;
-    }
+    const {
+      name,
+      avatarURL,
+      optionOne,
+      optionTwo,
+      isIdTrue,
+      id,
+      location
+    } = this.props;
+    const { value, showResult } = this.state;
+    const { showResponse } = location.state;
 
     let btnDisabled = true;
     if (value !== null) {
@@ -90,83 +93,99 @@ class QuestionPage extends Component {
 
     return (
       <Fragment>
-        <NavBar history={this.props.history}/>
-        {isIdTrue ? (
-          <Fragment>
-            <PageContainer>
-              <CardContainer>
-                <Flex
-                  style={{
-                    backgroundColor: `#f9f9f9`,
-                    padding: `25px`,
-                    borderRadius: `5px`,
-                    flex: `1 1 160px`,
-                    marginRight: `15px`
-                  }}
-                >
-                  <Avatar src={avatarURL} alt={name} />
-                  <h4 style={{ margin: `none` }}>{name}</h4>
-                </Flex>
-                <Flex
-                  style={{
-                    alignItems: `baseline`,
-                    flex: `4 1 300px`,
-                    marginTop: `15px`
-                  }}
-                >
-                  <h2 style={{ color: `#e61a8d`, fontStyle: `bold` }}>
-                    Would you rather...{" "}
-                  </h2>
-                  <Form style={{ width: `100%` }} onSubmit={this.handleSubmit}>
-                    <Form.Field style={{ textAlign: `initial` }}>
-                      <Radio
-                        label={optionOne}
-                        name="radioGroup"
-                        value="optionOne"
-                        onChange={this.handleChange}
-                        checked={value === "optionOne"}
-                      />
-                      <h4 style={{ margin: `10px 0px 10px 0px` }}>or</h4>
-                      <Radio
-                        label={optionTwo}
-                        name="radioGroup"
-                        value="optionTwo"
-                        onChange={this.handleChange}
-                        checked={value === "optionTwo"}
-                      />
-                    </Form.Field>
-                    <Button
-                      content="Submit"
-                      color="pink"
-                      floated="right"
-                      type="submit"
-                      disabled={btnDisabled}
-                    />
-                  </Form>
-                </Flex>
-              </CardContainer>
-            </PageContainer>
-            <BtnContainer>
-              <Button
-                content="Back"
-                basic
-                color="pink"
-                onClick={this.handleClick}
-              />
-            </BtnContainer>
-          </Fragment>
+        {showResponse ? (
+          <QuestionResultPage id={id} history={this.props.history} />
         ) : (
-          <NoMatch />
+          <Fragment>
+            {showResult ? (
+              <QuestionResultPage id={id} history={this.props.history} />
+            ) : (
+              <Fragment>
+                <NavBar history={this.props.history} />
+                {isIdTrue ? (
+                  <Fragment>
+                    <PageContainer>
+                      <CardContainer>
+                        <Flex
+                          style={{
+                            backgroundColor: `#f9f9f9`,
+                            padding: `25px`,
+                            borderRadius: `5px`,
+                            flex: `1 1 160px`,
+                            marginRight: `15px`
+                          }}
+                        >
+                          <Avatar src={avatarURL} alt={name} />
+                          <h4 style={{ margin: `none` }}>{name}</h4>
+                        </Flex>
+                        <Flex
+                          style={{
+                            alignItems: `baseline`,
+                            flex: `4 1 300px`,
+                            marginTop: `15px`
+                          }}
+                        >
+                          <h2 style={{ color: `#e61a8d`, fontStyle: `bold` }}>
+                            Would you rather...{" "}
+                          </h2>
+                          <Form
+                            style={{ width: `100%` }}
+                            onSubmit={this.handleSubmit}
+                          >
+                            <Form.Field style={{ textAlign: `initial` }}>
+                              <Radio
+                                label={optionOne}
+                                name="radioGroup"
+                                value="optionOne"
+                                onChange={this.handleChange}
+                                checked={value === "optionOne"}
+                              />
+                              <h4 style={{ margin: `10px 0px 10px 0px` }}>
+                                or
+                              </h4>
+                              <Radio
+                                label={optionTwo}
+                                name="radioGroup"
+                                value="optionTwo"
+                                onChange={this.handleChange}
+                                checked={value === "optionTwo"}
+                              />
+                            </Form.Field>
+                            <Button
+                              content="Submit"
+                              color="pink"
+                              floated="right"
+                              type="submit"
+                              disabled={btnDisabled}
+                            />
+                          </Form>
+                        </Flex>
+                      </CardContainer>
+                    </PageContainer>
+                    <BtnContainer>
+                      <Button
+                        content="Back"
+                        basic
+                        color="pink"
+                        onClick={this.handleClick}
+                      />
+                    </BtnContainer>
+                  </Fragment>
+                ) : (
+                  <NoMatch />
+                )}
+              </Fragment>
+            )}{" "}
+          </Fragment>
         )}
       </Fragment>
     );
   }
 }
 
-function mapStateToProps({ questions, users, authUser }, props) {
-  const id = props.match.params.id;
+function mapStateToProps({ questions, users, authUser, response }, props) {
   let { question, avatarURL, name, optionOne, optionTwo } = "";
-
+  const id = props.match.params.id;
   const isIdTrue = id in questions;
   if (isIdTrue === true) {
     question = questions[id];
@@ -177,7 +196,6 @@ function mapStateToProps({ questions, users, authUser }, props) {
   }
 
   return {
-    id,
     question,
     avatarURL,
     name,
@@ -185,7 +203,9 @@ function mapStateToProps({ questions, users, authUser }, props) {
     optionTwo,
     questions,
     authUser,
-    isIdTrue
+    isIdTrue,
+    id,
+    response
   };
 }
 
