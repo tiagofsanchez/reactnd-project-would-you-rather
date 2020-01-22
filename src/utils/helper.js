@@ -55,3 +55,71 @@ export function userQuestionData(users, authUser, questions) {
     unansweredId,
   };
 }
+
+
+//This functions will struture data for QuestionPage
+
+export function questionPageData(questions, users, props) { 
+  let { question, avatarURL, name, optionOne, optionTwo } = "";
+  const id = props.match.params.id;
+  const isIdTrue = id in questions;
+  if (isIdTrue === true) {
+    question = questions[id];
+    avatarURL = users[question.author].avatarURL;
+    name = users[question.author].name;
+    optionOne = question.optionOne.text;
+    optionTwo = question.optionTwo.text;
+  }
+
+  return {
+    question,
+    avatarURL,
+    name,
+    optionOne,
+    optionTwo,
+    isIdTrue,
+    id,
+  };
+}
+
+//This function will struture data for QuestionResultPage
+
+export function responsePageData(users, questions, authUser, id) { 
+  const isIdTrue = id in questions;
+  let {
+    name,
+    avatarURL,
+    optionOne,
+    optionTwo,
+    optionOneVotes,
+    optionTwoVotes,
+    totalVotes,
+    userAnswer,
+    logedInUser
+  } = "";
+
+  if (isIdTrue === true) {
+    name = users[questions[id].author].name;
+    avatarURL = users[questions[id].author].avatarURL;
+    optionOne = questions[id].optionOne.text;
+    optionTwo = questions[id].optionTwo.text;
+    optionOneVotes = questions[id].optionOne.votes.length;
+    optionTwoVotes = questions[id].optionTwo.votes.length;
+    totalVotes = optionOneVotes + optionTwoVotes;
+    userAnswer = users[authUser].answers[id];
+    logedInUser = users[authUser].name;
+  }
+
+  return {
+    name,
+    avatarURL,
+    optionOne,
+    optionTwo,
+    optionOneVotes,
+    optionTwoVotes,
+    totalVotes,
+    userAnswer,
+    logedInUser,
+    isIdTrue
+  };
+}

@@ -1,9 +1,9 @@
 import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import { Button, Form, Radio } from "semantic-ui-react";
-
 import styled from "@emotion/styled";
 
+import { questionPageData } from "../utils/helper";
 import { handleSaveAnswer } from "../actions/questions";
 import NavBar from "./NavBar";
 import NoMatch from "./NoMatch";
@@ -85,6 +85,7 @@ class QuestionPage extends Component {
     } = this.props;
     const { value, showResult } = this.state;
     const { showResponse } = location.state;
+    const test = showResponse && showResponse !== undefined;
 
     let btnDisabled = true;
     if (value !== null) {
@@ -93,7 +94,7 @@ class QuestionPage extends Component {
 
     return (
       <Fragment>
-        {showResponse ? (
+        {test ? (
           <QuestionResultPage id={id} history={this.props.history} />
         ) : (
           <Fragment>
@@ -183,17 +184,16 @@ class QuestionPage extends Component {
   }
 }
 
-function mapStateToProps({ questions, users, authUser, response }, props) {
-  let { question, avatarURL, name, optionOne, optionTwo } = "";
-  const id = props.match.params.id;
-  const isIdTrue = id in questions;
-  if (isIdTrue === true) {
-    question = questions[id];
-    avatarURL = users[question.author].avatarURL;
-    name = users[question.author].name;
-    optionOne = question.optionOne.text;
-    optionTwo = question.optionTwo.text;
-  }
+function mapStateToProps({ questions, users }, props) {
+  const {
+    question,
+    avatarURL,
+    name,
+    optionOne,
+    optionTwo,
+    isIdTrue,
+    id
+  } = questionPageData(questions, users, props);
 
   return {
     question,
@@ -201,11 +201,8 @@ function mapStateToProps({ questions, users, authUser, response }, props) {
     name,
     optionOne,
     optionTwo,
-    questions,
-    authUser,
     isIdTrue,
-    id,
-    response
+    id
   };
 }
 

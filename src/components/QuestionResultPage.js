@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Progress, Button } from "semantic-ui-react";
+import styled from "@emotion/styled";
 
+import { responsePageData } from '../utils/helper'
 import NavBar from "./NavBar";
 import NoMatch from "./NoMatch";
 
-import styled from "@emotion/styled";
+
 
 
 const PageContainer = styled.div`
@@ -160,10 +162,7 @@ class QuestionResultsPage extends Component {
 }
 
 function mapStateToProps({ users, questions, authUser }, {id}) {
- 
-  const isIdTrue = id in questions;
-  let {
-    name,
+  const {name,
     avatarURL,
     optionOne,
     optionTwo,
@@ -171,20 +170,9 @@ function mapStateToProps({ users, questions, authUser }, {id}) {
     optionTwoVotes,
     totalVotes,
     userAnswer,
-    logedInUser
-  } = "";
-
-  if (isIdTrue === true) {
-    name = users[questions[id].author].name;
-    avatarURL = users[questions[id].author].avatarURL;
-    optionOne = questions[id].optionOne.text;
-    optionTwo = questions[id].optionTwo.text;
-    optionOneVotes = questions[id].optionOne.votes.length;
-    optionTwoVotes = questions[id].optionTwo.votes.length;
-    totalVotes = optionOneVotes + optionTwoVotes;
-    userAnswer = users[authUser].answers[id];
-    logedInUser = users[authUser].name;
-  }
+    logedInUser,
+    isIdTrue } = responsePageData(users, questions, authUser, id)
+ 
 
   return {
     name,

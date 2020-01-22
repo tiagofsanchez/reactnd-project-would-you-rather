@@ -48,6 +48,7 @@ class Home extends Component {
   };
 
   render() {
+    console.log(this.props)
     const { toBeAnswered } = this.state;
     const { answeredId, unansweredId } = this.props.questionsSplit;
 
