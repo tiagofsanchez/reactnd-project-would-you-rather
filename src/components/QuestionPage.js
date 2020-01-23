@@ -50,7 +50,6 @@ class QuestionPage extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    console.log(this.state);
   }
 
   handleSubmit = e => {
@@ -73,7 +72,9 @@ class QuestionPage extends Component {
     history.goBack();
   };
 
+
   render() {
+    console.log(this.props)
     const {
       name,
       avatarURL,
@@ -91,6 +92,7 @@ class QuestionPage extends Component {
     if (value !== null) {
       btnDisabled = false;
     }
+
 
     return (
       <Fragment>
@@ -184,7 +186,7 @@ class QuestionPage extends Component {
   }
 }
 
-function mapStateToProps({ questions, users }, props) {
+function mapStateToProps({ questions, users , authUser }, props) {
   const {
     question,
     avatarURL,
@@ -202,7 +204,8 @@ function mapStateToProps({ questions, users }, props) {
     optionOne,
     optionTwo,
     isIdTrue,
-    id
+    id,
+    authUser
   };
 }
 

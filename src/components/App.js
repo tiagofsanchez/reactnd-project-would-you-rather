@@ -30,7 +30,7 @@ class App extends Component {
               <Route exact path="/home" component={Home} />
               <Route exact path="/add" component={NewQuestion} />
               <Route exact path="/leaderboard" component={LeaderboardPage} />
-              <Route exact path="/question/:id" to={{state: { showResponse: false }}} component={QuestionPage} />
+              <Route exact path="/question/:id" component={QuestionPage} />
               <Route component={NoMatch} />
             </Switch>
             <Footer />
