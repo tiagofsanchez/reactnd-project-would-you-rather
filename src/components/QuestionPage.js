@@ -85,8 +85,13 @@ class QuestionPage extends Component {
       location
     } = this.props;
     const { value, showResult } = this.state;
-    const { showResponse } = location.state;
-    const test = showResponse && showResponse !== undefined;
+    
+    //if the user is logged out and and the URL persisted this variable will make sure to render the result 
+    //of that question unless if is false, rendering the question itself
+    let showQuestionResponse = true; 
+    if (typeof location.state !== "undefined") { 
+      showQuestionResponse = location.state.showResponse
+    }
 
     let btnDisabled = true;
     if (value !== null) {
@@ -96,7 +101,7 @@ class QuestionPage extends Component {
 
     return (
       <Fragment>
-        {test ? (
+        {showQuestionResponse ? (
           <QuestionResultPage id={id} history={this.props.history} />
         ) : (
           <Fragment>

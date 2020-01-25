@@ -89,10 +89,10 @@ class NewQuestion extends Component {
     }
 
     if (loading === 0 && onSubmit === true) {
-      return <Redirect to="/" />;
+      return <Redirect to="/home" />;
     }
 
-    //TODO: loadingBAr, check Redux Sagax
+    //TODO: check redux saga 
 
     return (
       <Fragment>
