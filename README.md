@@ -53,6 +53,9 @@ From a component stand point, this one will be very simple, it will have an (a) 
 
 The Login page will be inserted in the App.js file. Actually all my components will be inserted here and will be rendering them according to the user interaction with the my application.
 
+#### Data required
+
+The dropdown (using `semantic-ui-react`) will need to have user information in a certain way to work. As such I have created a function, that is on helper.js file, to display the information properly in the UI and connected this component to the store. 
 
 ### Home page
 
@@ -60,22 +63,46 @@ Existing components
 - NavBar (will be present in every page with the exception of Login)
 - QuestionCard (for unanswered and answered questions)
 
-![Home Page](./src/Images.png)
+![Home Page](./src/Images/HomeApp.png)
 
 The NavBar will help the user navigate through the App and will get the user access to the `Home`, `New question` and `Leaderboard` page as well as show the avatar for the user and a button to logout the user. 
 
-You will also find the "body" of the page with "toggle" between the questions that user didn't answered and the ones he did. 
+`Home` will divide unanswered and answered questions of a given user. In the UI the user will be able to see the a "toggle" that will enable to change between the different types of questions.
 
 The `QuestionCard` will display information of the questions and provide a way to answer and unanswered question or check the result of a question that the user as already answered to. 
+
+#### Data required
+
+The `Home` page component will need to be connected to the store and we will need to split the information considering the questions that the user answered and not. We also needed to consider the order. 
+
+Similarly `NavBar` component will need to have access to the store to know who is the user logged on, his name and avatar as well as to have access to log the user out by dispatching and action with access to the store. 
+
 
 ### QuestionPage
 
 - NavBar (as mentioned before will also be present here)
-- QuestionCard (with the selected unanswered question)
+- QuestionPage 
+- QuestionResultPage 
+
+For unanswered questions, and after the user selects the question to answer, you will have: 
+
+![Unanswered](./src/images/QuestionApp.png)
+
+On the other hand for answered question or after the user answers a question: 
+
+![Unanswered](./src/images/ResultApp.png)
+
+Note that the URL is the same and what I am doing here is changing the components that are rendering depending on the user interaction with the UI. 
+
+#### Data required
+
+The `QuestionPage` component will need to have access to the store so that we can 
+
+
 
 ### Answered question page
 
-- NavBar
+- NavBar (as mentioned before will also be present here)
 - QuestionCard (with the question results)
 
 ### New question page

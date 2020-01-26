@@ -57,7 +57,7 @@ export function userQuestionData(users, authUser, questions) {
 }
 
 
-//This functions will struture data for QuestionPage
+//This functions will structure data for QuestionPage
 
 export function questionPageData(questions, users, props) { 
   let { question, avatarURL, name, optionOne, optionTwo } = "";

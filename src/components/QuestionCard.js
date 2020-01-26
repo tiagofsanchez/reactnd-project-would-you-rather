@@ -35,7 +35,10 @@ class QuestionCard extends Component {
 
     const button = toBeAnswered ? (
       <Link
-        to={{ pathname: `/question/${id}`, state: { showResponse: false } }}
+        to={{
+          pathname: `/question/${id}`,
+          state: { showResponse: false }
+        }}
         style={{ width: `100%` }}
       >
         <Button floated="right" basic color="pink">
@@ -43,18 +46,18 @@ class QuestionCard extends Component {
         </Button>
       </Link>
     ) : (
-      <Link
-        to={{
-          pathname: `/question/${id}`,
-          state: { showResponse: true }
-        }}
-        style={{ width: `100%` }}
-      >
-        <Button floated="right" basic color="pink">
-          Check results
+        <Link
+          to={{
+            pathname: `/question/${id}`,
+            state: { showResponse: true }
+          }}
+          style={{ width: `100%` }}
+        >
+          <Button floated="right" basic color="pink">
+            Check results
         </Button>
-      </Link>
-    );
+        </Link>
+      );
 
     return (
       <CardContainer>
