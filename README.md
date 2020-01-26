@@ -86,11 +86,11 @@ Similarly `NavBar` component will need to have access to the store to know who i
 
 For unanswered questions, and after the user selects the question to answer, you will have: 
 
-![Unanswered](./src/images/QuestionApp.png)
+![Unanswered](./src/Images/QuestionApp.png)
 
 On the other hand for answered question or after the user answers a question: 
 
-![Unanswered](./src/images/ResultApp.png)
+![Unanswered](./src/Images/ResultApp.png)
 
 Note that the URL is the same and what I am doing here is changing the components that are rendering depending on the user interaction with the UI. 
 
