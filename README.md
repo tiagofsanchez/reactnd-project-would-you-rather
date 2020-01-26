@@ -28,12 +28,14 @@ With the help to the following YouTube video we are able to build the different 
 
 So you will have a couple of different pages here:
 
-- Login page
-- Home page
-- Question page
-- Answered question page
-- Leaderboard page
-- New question page
+- Home, is it's own component and page ("/home")
+- Login, rendered in `Home` component ("/home")
+- QuestionPage, is it's onw component and page ("/question/:id")
+- LeaderboardPage, is it's own component and page ("/leaderboard")
+- NewQuestion, is it's onw component and page ("/add")
+- NoMatch, is it's own component and page (anything that is not defined above)
+
+> At the beginning I had divided `QuestionPage` and `QuestionResultPage`, as I thought this was a better implementation, however I needed to follow the rubric 100% so that your project gets approved 
 
 Note that for every different page, I will need to create a different url, with exception of Login and Home page given they will share the same and will be the root of my app.   
 
@@ -43,22 +45,32 @@ Let's dive in the components for each page.
 
 ## 2.Components breakdown
 
-### Log in page
+### Login page
 
-From a component stand point, this one will be very simple, it will have:
+From a component stand point, this one will be very simple, it will have an (a) Icon with the logo of the app, (b) a dropdown for the user to select his profile and (c) a submit button to login that user.  
 
-- Login component
+![Login Page](./src/Images/LoginApp.png)
 
 The Login page will be inserted in the App.js file. Actually all my components will be inserted here and will be rendering them according to the user interaction with the my application.
 
+
 ### Home page
 
-- NavBar
+Existing components 
+- NavBar (will be present in every page with the exception of Login)
 - QuestionCard (for unanswered and answered questions)
+
+![Home Page](./src/Images.png)
+
+The NavBar will help the user navigate through the App and will get the user access to the `Home`, `New question` and `Leaderboard` page as well as show the avatar for the user and a button to logout the user. 
+
+You will also find the "body" of the page with "toggle" between the questions that user didn't answered and the ones he did. 
+
+The `QuestionCard` will display information of the questions and provide a way to answer and unanswered question or check the result of a question that the user as already answered to. 
 
 ### QuestionPage
 
-- NavBar
+- NavBar (as mentioned before will also be present here)
 - QuestionCard (with the selected unanswered question)
 
 ### Answered question page

@@ -29,7 +29,6 @@ const Avatar = styled.img`
 `;
 
 class QuestionCard extends Component {
-  handleClick = () => {};
 
   render() {
     const { name, avatarURL, questionTeaser, toBeAnswered, id } = this.props;
