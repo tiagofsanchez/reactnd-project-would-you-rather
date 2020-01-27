@@ -28,12 +28,12 @@ With the help to the following YouTube video we are able to build the different 
 
 So you will have a couple of different pages here:
 
-- Home, is it's own component and page ("/home")
-- Login, rendered in `Home` component ("/home")
-- QuestionPage, is it's onw component and page ("/question/:id")
-- LeaderboardPage, is it's own component and page ("/leaderboard")
-- NewQuestion, is it's onw component and page ("/add")
-- NoMatch, is it's own component and page (anything that is not defined above)
+- Home, is it's own component and page `"/home"`
+- Login, rendered in `Home` component `"/home"`
+- QuestionPage, is it's onw component and page `"/question/:id"`
+- LeaderboardPage, is it's own component and page `"/leaderboard"`
+- NewQuestion, is it's onw component and page `"/add"`
+- NoMatch, is it's own component and page (anything that is not defined above will default here)
 
 > At the beginning I had divided `QuestionPage` and `QuestionResultPage`, as I thought this was a better implementation, however I needed to follow the rubric 100% so that your project gets approved 
 
@@ -44,6 +44,8 @@ I am not sure if I am missing something out, but for now, I reckon this is a ver
 Let's dive in the components for each page.
 
 ## 2.Components breakdown
+
+Here I will try to breakdown the different components that are needed to build each individual page and view that is presented to the user.
 
 ### Login page
 
@@ -75,7 +77,7 @@ The `QuestionCard` will display information of the questions and provide a way t
 
 The `Home` page component will need to be connected to the store and we will need to split the information considering the questions that the user answered and not. We also needed to consider the order. 
 
-Similarly `NavBar` component will need to have access to the store to know who is the user logged on, his name and avatar as well as to have access to log the user out by dispatching and action with access to the store. 
+Similarly `NavBar` component will need to have access to the store to know who is the user logged on, his name and avatar as well as to have access to log the user out by dispatching and action with access to the store to change the `authUser` slice. 
 
 
 ### QuestionPage
@@ -84,7 +86,7 @@ Similarly `NavBar` component will need to have access to the store to know who i
 - QuestionPage 
 - QuestionResultPage 
 
-For unanswered questions, and after the user selects the question to answer, you will have: 
+This component, rendered on `/question/:id` will render different components depending on the user interaction. For unanswered questions, and after the user selects the question to answer, you will have: 
 
 ![Unanswered](./src/Images/QuestionApp.png)
 
@@ -92,28 +94,36 @@ On the other hand for answered question or after the user answers a question:
 
 ![Unanswered](./src/Images/ResultApp.png)
 
-Note that the URL is the same and what I am doing here is changing the components that are rendering depending on the user interaction with the UI. 
+Note, once again, that the URL is the same and what I am doing here is changing the components that are rendering depending on the user interaction with the UI. This was one of the requirements of the project and I don't believe this was intended to showcase the best practices of app design, but to think about how to solve for a multi component rendering depending on the user input on the UI. 
 
 #### Data required
 
-The `QuestionPage` component will need to have access to the store so that we can 
-
-
-
-### Answered question page
-
-- NavBar (as mentioned before will also be present here)
-- QuestionCard (with the question results)
+The `QuestionPage` component will act as a controlled component when the user wants to answer a given question. However it could also be rendering `QuestionResultPage` that will be a component with access to the store. Both components will have access to the store as they will need to get relevant information.`QuestionPage` component will need to dispatch actions to change the different store slices, `questions` and `users`, whereas `QuestionResultPage` is only consuming store information and doesn't need to update anything. 
 
 ### New question page
 
-- NavBar
-- NewQuestionForm
+Existing components:
+- NavBar (as mentioned before will also be present here)
+
+The `NewQuestion` page is rendered on it's own URL and is a controlled component that has its own state and will connect to the store so that the question the user asks will be properly stored and used throughout the application. 
+
+![New Question](./src/Images/NewQuestionApp.png)
+
+Despite the fact that you see the form highlighted you will not find a page and component design, everything will be on the `NewQuestion` component.
+
+#### Data required
+
+Access to the store will be required for dispatching data to the store. `NewQuestion` will need to change the both `questions` and `users` slices of the store every time a user adds a new question. 
 
 ### Leaderboard page
 
+Existing components
 - NavBar
 - LeaderboardCard
+
+`LeaderboardPage` page will represent, as the name mentions, the different scores of the users of the app depending on their answers. Here you will find a `LeaderboardCard` component, more for a styling decoupling. All data will be contained in the `LeaderboardPage` that will need to have access to the store.
+
+![Leaderboard](./src/Images/LeaderboardApp.png)
 
 I think we are all good for now... let's start to figure out what are the main actions on our app.
 
@@ -153,11 +163,23 @@ export default combineReducers({
   users,
   loadingBar: loadingBarReducer
 });
-
 ```
 
 The loadingBar is keeping tabs with the needed information for me to render the loadingBar properly. 
 
+## Other stuff that I have used
 
+During this project I have used different open source projects (that are not part of the Udacity program) to speed up my development and as such I would like to mentioned them bellow: 
+
+- [Semantic Ui React](https://react.semantic-ui.com/)
+- [Emotion](https://emotion.sh/docs/introduction) 
+- [Flaticon](https://www.flaticon.com/)
+
+
+## Final notes
+
+I think this gives you a gist of the the thought process and tooling behind this project, hope you can use this to build your own project and as a reference guide whenever you are stuck with any issue. Feel free to reach out if you have any questions with all the above. 
+
+See you around! 
 
 
